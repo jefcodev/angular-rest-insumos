@@ -1,0 +1,48 @@
+<div class="col-md-12">
+    <div style="text-align: center;">
+        <h1>Clientes</h1>
+    </div>
+    <button type="button" class="btn btn-primary">Nuevo Cliente</button>
+    <br><br>
+    <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+        <thead>
+            <tr>
+                <th style="width: 10px;">Cédula</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Ciudad</th>
+                <th>Teléfono</th>
+                <th>Opciones</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of clientes">
+                <td>
+                    {{i.cedula}}
+                </td>
+                <td>
+                    {{i.nombre}}
+                </td>
+                <td>
+                    {{i.apellido}}
+                </td>
+                <td>
+                    {{i.ciudad}}
+                </td>
+                <td>
+                    {{i.telefono}}
+                </td>
+                <td class="d-flex justify-content-center">
+
+                    <a class="btn btn-success" data-toggle="modal" data-target="#editarIngredients">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    
+
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

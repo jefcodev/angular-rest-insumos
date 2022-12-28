@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
 
 
 
@@ -15,7 +16,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   declarations: [
     AppComponent,
     LoginPageComponent,
-    DashboardComponent
+    DashboardComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
