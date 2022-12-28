@@ -31,7 +31,7 @@ export class LoginPageComponent implements OnInit {
       });
       
       if(user){
-      this.router.navigate(["home"])
+      this.router.navigate(["dashboard"])
       }else{
         alert("user not found")
       }
