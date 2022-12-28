@@ -18,4 +18,8 @@ export class ClientesService {
     let direccion=this.url+"clientes";
     return this.http.post(direccion,form);
   }
+  updateClient(form:any){
+    let direccion=this.url+"clientes";
+    return this.http.put(direccion,form);
+  }
 }

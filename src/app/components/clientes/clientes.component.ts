@@ -19,7 +19,15 @@ export class ClientesComponent implements OnInit {
     telefono: new FormControl('')
   }
   );
-
+  cedulaAux: string = '';
+  nClienteFormA = new FormGroup({
+    cedula: new FormControl(''),
+    nombre: new FormControl(''),
+    apellido: new FormControl(''),
+    ciudad: new FormControl(''),
+    telefono: new FormControl('')
+  }
+  );
 
   constructor(private clientesService: ClientesService) { }
 
@@ -36,22 +44,42 @@ export class ClientesComponent implements OnInit {
       (error) => console.log(error)
     );
   }
-  public crearClient(form:any){
-     this.clientesService.saveClient(form).subscribe(data=>{
+  public crearClient(form: any) {
+    this.clientesService.saveClient(form).subscribe(data => {
       this.showAllClients();
       this.cleanForm();
-      
+
     })
   }
 
-  public cleanForm(){
+  public cleanForm() {
     this.nClienteForm.patchValue({
-      cedula:'',
+      cedula: '',
       nombre: '',
-      apellido:'',
+      apellido: '',
       ciudad: '',
       telefono: ''
     })
-    
+
+
+  }
+  public getDataClient(cedula: any, nombre: any, apellido: any, ciudad: any, telefono: any) {
+    this.nClienteFormA.patchValue({
+      cedula: cedula,
+      nombre: nombre,
+      apellido: apellido,
+      ciudad: ciudad,
+      telefono: telefono
+    })
+    this.cedulaAux=cedula;
+    console.log(cedula)
+  }
+
+  public updateClient(form: any) {
+    this.clientesService.updateClient(form).subscribe(data => {
+      this.showAllClients();
+  
+
+    })
   }
 }
