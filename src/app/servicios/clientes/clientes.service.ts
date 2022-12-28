@@ -13,4 +13,9 @@ export class ClientesService {
     let direccion=this.url+"clientes";
     return this.http.get(direccion);
   }
+
+  saveClient(form:any){
+    let direccion=this.url+"clientes";
+    return this.http.post(direccion,form);
+  }
 }
