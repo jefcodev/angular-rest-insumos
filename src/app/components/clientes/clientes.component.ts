@@ -78,8 +78,6 @@ export class ClientesComponent implements OnInit {
   public updateClient(form: any) {
     this.clientesService.updateClient(form).subscribe(data => {
       this.showAllClients();
-  
-
     })
   }
 }

@@ -1,0 +1,139 @@
+<div class="col-md-12">
+    <div style="text-align: center;">
+        <h1>Guardias</h1>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nuevo Guardia</button>
+    <br><br>
+    <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+        <thead>
+            <tr>
+                <th style="width: 10px;">Cédula</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Teléfono</th>
+                <th>Observaciones</th>
+                <th>Opciones</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of guardias">
+                <td>
+                    {{i.cedula}}
+                </td>
+                <td>
+                    {{i.nombre}}
+                </td>
+                <td>
+                    {{i.apellido}}
+                </td>
+
+                <td>
+                    {{i.telefono}}
+                </td>
+                <td>
+                    {{i.observaciones}}
+                </td>
+                <td class="d-flex justify-content-center">
+
+                    <a class="btn btn-success" data-toggle="modal" data-target="#editarGuards"
+                        (click)="getDataGuards(i.cedula,i.nombre,i.apellido,i.observaciones,i.telefono)">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+
+                    <div class="modal fade" id="editarGuards" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Ingrediente</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="nGuardiaFormA">
+                                        <div class="form-group">
+                                            <label>
+                                                {{cedulaAux}}
+                                            </label>
+                                            <input type="text" name="Nombre Ingrediente" formControlName="nombre"
+                                                placeholder="{{cedulaAux}}" class="form-control"> <br>
+                                            <input type="text" name="Nombre Ingrediente" formControlName="apellido"
+                                                placeholder="{{cedulaAux}}" class="form-control"><br>
+
+                                            <input type="text" name="Nombre Ingrediente" formControlName="telefono"
+                                                placeholder="{{cedulaAux}}" class="form-control"><br>
+                                            <input type="text" name="Nombre Ingrediente" formControlName="observaciones"
+                                                placeholder="{{cedulaAux}}" class="form-control">
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary"
+                                                (click)="updateGuards(nGuardiaFormA.value)"
+                                                data-dismiss="modal">Actualizar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- +++++++++++ MODEL CREAR UN Guardia +++++++++ -->
+<div class="modal fade" id="crearCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="nGuardiaForm">
+                    <div class="form-group">
+                        <input type="text" name="Cedula Cliente" formControlName="cedula"
+                            placeholder="Ingrese su cédula" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="Nombres Completos" formControlName="nombre"
+                            placeholder="Ingrese sus nombres" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="Nombres Completos" formControlName="apellido"
+                            placeholder="Ingrese sus apelldios" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="Ciuadd" formControlName="observaciones" placeholder="Ingrese su ciudad"
+                            class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="Telefono" formControlName="telefono"
+                            placeholder="Ingrese su teléfono celular" class="form-control">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            (click)="crearGuards(nGuardiaForm.value)">Crear</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edutar Clkeint -->

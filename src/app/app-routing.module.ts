@@ -5,6 +5,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { GuardiasComponent } from './components/guardias/guardias/guardias.component';
 
 
 const routes: Routes = [
@@ -12,9 +13,11 @@ const routes: Routes = [
   {path:"login", component:LoginPageComponent},
   {path:"home", component:HomeComponent},
   {path:"cliente", component:ClientesComponent},
+  {path:"guardia", component:GuardiasComponent},
   {path:"dashboard", component:DashboardComponent, children:[
     {path:"home", component:HomeComponent},
-    {path:"cliente", component:ClientesComponent}
+    {path:"cliente", component:ClientesComponent},
+    {path:"guardia", component:GuardiasComponent}
   ]},
   
 ];

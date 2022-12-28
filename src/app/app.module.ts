@@ -9,6 +9,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { GuardiasComponent } from './components/guardias/guardias/guardias.component';
 
 
 
@@ -17,7 +18,8 @@ import { ClientesComponent } from './components/clientes/clientes.component';
     AppComponent,
     LoginPageComponent,
     DashboardComponent,
-    ClientesComponent
+    ClientesComponent,
+    GuardiasComponent
   ],
   imports: [
     BrowserModule,
