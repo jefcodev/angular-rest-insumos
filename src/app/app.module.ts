@@ -10,7 +10,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { GuardiasComponent } from './components/guardias/guardias/guardias.component';
-
+import { CompedidosComponent } from './components/pedidos/compedidos/compedidos.component';
+import { PedidosComponent } from './components/pedidos/pedidos/pedidos.component';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { GuardiasComponent } from './components/guardias/guardias/guardias.compo
     LoginPageComponent,
     DashboardComponent,
     ClientesComponent,
-    GuardiasComponent
+    GuardiasComponent,
+    CompedidosComponent,
+    PedidosComponent
   ],
   imports: [
     BrowserModule,

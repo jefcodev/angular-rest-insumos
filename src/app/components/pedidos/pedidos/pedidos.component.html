@@ -1,0 +1,55 @@
+
+
+
+<div class="col-md-12">
+    <div style="text-align: center;">
+        <h1>Pedidos</h1>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" [routerLink]="['/dashboard/pedido/compedido']">Nuevo Pedido</button>
+    <br><br>
+    
+    <router-outlet></router-outlet><br>
+    <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+        <thead>
+            <tr>
+               
+                <th>ID</th>
+                <th>Fecha pedido</th>
+                <th>Fecha entrega</th>
+                <th>Cantidad en libras</th>
+                <th>Ruta</th>
+                <th>Observaciones</th>
+                <th>Cliente</th>
+                <th>Opciones</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of orders">
+                <td>
+                    {{i.id_pedido}}
+                </td>
+                <td>
+                    {{i.fecha_pedido | date: "M/d/yy"}}
+                </td>
+                <td>
+                    {{i.fecha_entrega | date: "M/d/yy"}}
+                </td>
+                <td>
+                    {{i.cantidad_libras}}
+                </td>
+                <td>
+                    {{i.ruta}}
+                </td>
+                <td>
+                    {{i.observasiones}}
+                </td>
+                <td>
+                    {{i.client}}
+                </td>
+                
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
