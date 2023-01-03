@@ -24,14 +24,14 @@ export class LoginPageComponent implements OnInit {
     })
   }
   login(){
-    this.http.get<any>("http://localhost:4000/usuarios")
+    this.http.get<any>("https://app-sistemas-inventarios.herokuapp.com/usuarios")
     .subscribe(res=>{
       const user = res.find((a:any)=>{
         return a.nombre_usuario === this.loginForm.value.nombre_usuario && a.clave_usuario === this.loginForm.value.clave_usuario 
       });
       
       if(user){
-      this.router.navigate(["dashboard"])
+      this.router.navigate(["dashboard/home"])
       }else{
         alert("user not found")
       }
