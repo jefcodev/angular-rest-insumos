@@ -1,0 +1,48 @@
+<div class="col-md-12">
+    <div style="text-align: center;">
+        <h1>Insumos</h1>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nuevo
+        insumo</button>
+    <br><br>
+    <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+        <thead>
+            <tr>
+                <th style="width: 10px;">ID</th>
+                <th>Fecha ingreso</th>
+                <th>Fecha salida</th>
+                <th>Cantidad</th>
+                <th>Observaciones</th>
+
+                <th>Guardia</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of insumos">
+                <td>
+                    {{i.id_insumos}}
+                </td>
+                <td>
+                    {{i.fecha_ingreso | date: "M/d/yy"}}
+                </td>
+                <td>
+                    {{i.fecha_salida | date: "M/d/yy"}}
+                </td>
+                <td>
+                    {{i.cantidad_libras}}
+                </td>
+                
+                <td>
+                    {{i.observasiones}}
+                </td>
+               
+                <td>
+                    {{i.guardia}}
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

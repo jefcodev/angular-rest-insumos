@@ -1,0 +1,55 @@
+<div class="col-md-12">
+    <div style="text-align: center;">
+        <h1>Despacho</h1>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nuevo
+        despacho</button>
+    <br><br>
+    <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+        <thead>
+            <tr>
+                <th style="width: 10px;">ID</th>
+                <th>Fecha de despacho</th>
+                <th>Cantidad</th>
+                <th>Número de tinas</th>
+                <th>Ruta</th>
+                <th>Observacion</th>
+                <th>Cliente</th>
+                <th>Guardia</th>
+                <th>Opciones</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of despachos">
+                <td>
+                    {{i.id_despacho}}
+                </td>
+                <td>
+                    {{i.fecha_despacho | date: "M/d/yy"}}
+                </td>
+                <td>
+                    {{i.cantidad_libras}}
+                </td>
+                <td>
+                    {{i.numero_tinas}}
+                </td>
+                <td>
+                    {{i.ruta}}
+                </td>
+                <td>
+                    {{i.observasiones}}
+                </td>
+                <td>
+                    {{i.cliente}}
+                </td>
+                <td>
+                    {{i.guardia}}
+                </td>
+
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>

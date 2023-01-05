@@ -1,0 +1,48 @@
+<div class="col-md-12">
+    <div style="text-align: center;">
+        <h1>Prestamo de tinas</h1>
+    </div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nuevo
+        prestamo</button>
+    <br><br>
+    <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+        <thead>
+            <tr>
+                <th style="width: 10px;">ID</th>
+                <th>Fecha prestamo</th>
+
+                <th>Número de tinas</th>
+
+                <th>Observacion</th>
+                <th>Cliente</th>
+
+                <th>Opciones</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of prestamoTinas">
+                <td>
+                    {{i.id_prestamo_tinas}}
+                </td>
+                <td>
+                    {{i.fecha_prestamo | date: "M/d/yy"}}
+                </td>
+                <td>
+                    {{i.numero_tinas}}
+                </td>
+               
+                <td>
+                    {{i.observasiones}}
+                </td>
+                <td>
+                    {{i.cliente}}
+                </td>
+               
+
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>
