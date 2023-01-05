@@ -2,9 +2,10 @@
     <div style="text-align: center;">
         <h1>Prestamo de tinas</h1>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nuevo
-        prestamo</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal"
+        [routerLink]="['/dashboard/prestamo/compprestamo']">Nuevo prestamo</button>
     <br><br>
+    <router-outlet></router-outlet><br>
     <table class="table table-bordered table-hover bg-white" style="text-align: center;">
         <thead>
             <tr>
@@ -31,14 +32,14 @@
                 <td>
                     {{i.numero_tinas}}
                 </td>
-               
+
                 <td>
                     {{i.observasiones}}
                 </td>
                 <td>
                     {{i.cliente}}
                 </td>
-               
+
 
 
 

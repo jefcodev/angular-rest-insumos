@@ -11,6 +11,9 @@ import { CompedidosComponent } from './components/pedidos/compedidos/compedidos.
 import { DespachosComponent } from './components/despachos/despachos.component';
 import { IngresoInsumosComponent } from './components/ingreso-insumos/ingreso-insumos.component';
 import { PrestamoTinasComponent } from './components/prestamo-tinas/prestamo-tinas.component';
+import { CompdespachoComponent } from './components/despachos/compdespacho/compdespacho.component';
+import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/compinsumos.component';
+import { CompprestamoComponent } from './components/prestamo-tinas/compprestamo/compprestamo.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -18,7 +21,7 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "cliente", component: ClientesComponent },
   { path: "guardia", component: GuardiasComponent },
-  {path: "pedido", component: PedidosComponent},
+  { path: "pedido", component: PedidosComponent },
   { path: "compedido", component: CompedidosComponent },
   { path: "despacho", component: DespachosComponent },
   { path: "insumos", component: DespachosComponent },
@@ -28,9 +31,21 @@ const routes: Routes = [
       { path: "home", component: HomeComponent },
       { path: "cliente", component: ClientesComponent },
       { path: "guardia", component: GuardiasComponent },
-      { path: "despacho", component: DespachosComponent },
-      { path: "insumo", component: IngresoInsumosComponent },
-      { path: "prestamo", component: PrestamoTinasComponent },
+      {
+        path: "despacho", component: DespachosComponent, children: [
+          { path: "compdespacho", component: CompdespachoComponent }
+        ]
+      },
+      {
+        path: "insumo", component: IngresoInsumosComponent, children: [
+          { path: "compinsumo", component: CompinsumosComponent }
+        ]
+      },
+      {
+        path: "prestamo", component: PrestamoTinasComponent, children: [
+          { path: "compprestamo", component: CompprestamoComponent }
+        ]
+      },
 
       {
         path: "pedido", component: PedidosComponent, children: [

@@ -2,9 +2,10 @@
     <div style="text-align: center;">
         <h1>Despacho</h1>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nuevo
-        despacho</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal"
+    [routerLink]="['/dashboard/despacho/compdespacho']">Nuevo despacho</button>
     <br><br>
+    <router-outlet></router-outlet><br>
     <table class="table table-bordered table-hover bg-white" style="text-align: center;">
         <thead>
             <tr>

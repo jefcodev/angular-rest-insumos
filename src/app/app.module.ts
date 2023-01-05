@@ -17,6 +17,9 @@ import { PedidosComponent } from './components/pedidos/pedidos/pedidos.component
 import { DespachosComponent } from './components/despachos/despachos.component';
 import { PrestamoTinasComponent } from './components/prestamo-tinas/prestamo-tinas.component';
 import { IngresoInsumosComponent } from './components/ingreso-insumos/ingreso-insumos.component';
+import { CompdespachoComponent } from './components/despachos/compdespacho/compdespacho.component';
+import { CompprestamoComponent } from './components/prestamo-tinas/compprestamo/compprestamo.component';
+import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/compinsumos.component';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { IngresoInsumosComponent } from './components/ingreso-insumos/ingreso-in
     PedidosComponent,
     DespachosComponent,
     PrestamoTinasComponent,
-    IngresoInsumosComponent
+    IngresoInsumosComponent,
+    CompdespachoComponent,
+    CompprestamoComponent,
+    CompinsumosComponent
   ],
   imports: [
     BrowserModule,

@@ -2,9 +2,10 @@
     <div style="text-align: center;">
         <h1>Insumos</h1>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nuevo
-        insumo</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal"
+        [routerLink]="['/dashboard/insumo/compinsumo']">Nuevo insumo</button>
     <br><br>
+    <router-outlet></router-outlet><br>
     <table class="table table-bordered table-hover bg-white" style="text-align: center;">
         <thead>
             <tr>
@@ -33,11 +34,11 @@
                 <td>
                     {{i.cantidad_libras}}
                 </td>
-                
+
                 <td>
                     {{i.observasiones}}
                 </td>
-               
+
                 <td>
                     {{i.guardia}}
                 </td>
