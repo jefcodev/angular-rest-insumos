@@ -6,6 +6,4 @@ export interface ModelPedidosI{
     ruta:string;
     observasiones:string;
     client:string;
- 
- 
  }

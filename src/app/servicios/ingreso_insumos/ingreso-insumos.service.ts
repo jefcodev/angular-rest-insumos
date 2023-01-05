@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class IngresoInsumosService {
 
-  url: string = 'http://localhost:4000/';
+  url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
   constructor(private http: HttpClient) { }
 
   getAllInsumos(){
