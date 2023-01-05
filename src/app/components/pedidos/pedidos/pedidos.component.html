@@ -47,11 +47,12 @@
                 </td>
                 <td class="d-flex justify-content-center">
 
-                    <a class="btn btn-success" data-toggle="modal" data-target="#editarIngredients">
+                    <a class="btn btn-success" data-toggle="modal" data-target="#editarPedido"
+                        (click)="getDataOrders(i.id_pedido,i.fecha_entrega,i.cantidad_libras, i.ruta, i.observasiones, i.client)">
                         <i class="fas fa-edit"></i>
                     </a>
 
-                    <div class="modal fade" id="editarIngredients" tabindex="-1" role="dialog"
+                    <div class="modal fade" id="editarPedido" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -62,18 +63,19 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
+                                    <form [formGroup]="formPedidoA">
                                         <div class="select">
                                             <select name="format" id="format" formControlName="fk_tbl_cliente_cedula">
-                                                <option *ngFor="let c of clientes" [value]="c.cedula">{{c.nombre +' '+c.apellido}}
+                                                <option *ngFor="let c of clientes" [value]="c.cedula">{{c.nombre +'
+                                                    '+c.apellido}}
                                                 </option>
                                             </select>
-                            
+
                                         </div>
                                         <br>
                                         <div class="form-group">
-                                            <input type="text" name="Nombre Ingrediente" formControlName="nombre"
-                                                placeholder="as" class="form-control"> <br>
+                                            <input type="text" name="Nombre Ingrediente" formControlName="fecha_entrega"
+                                                placeholder="asadda" class="form-control"> <br>
                                         </div>
 
                                         <div class="modal-footer">
