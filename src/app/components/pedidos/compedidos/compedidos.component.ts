@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientesService } from 'src/app/servicios/clientes/clientes.service';
 import { PedidosService } from '../../../servicios/pedidos/pedidos.service';
 import { Router } from '@angular/router';
+import { PedidosComponent } from '../pedidos/pedidos.component';
+
 @Component({
   selector: 'app-compedidos',
   templateUrl: './compedidos.component.html',
@@ -12,7 +14,8 @@ import { Router } from '@angular/router';
 export class CompedidosComponent implements OnInit {
 
   clientes: ModelClientesI[] = [];
-  constructor(private clientesService: ClientesService, private pedidosService:PedidosService,  private router: Router) { }
+  constructor(private clientesService: ClientesService, private pedidosService: PedidosService, private router: Router,
+    private pedidosComponent: PedidosComponent) { }
 
   formPedido = new FormGroup({
     fecha_pedido: new FormControl(new Date),
@@ -31,7 +34,7 @@ export class CompedidosComponent implements OnInit {
     this.clientesService.getAllClients().subscribe(
       (clientes: any) => {
         this.clientes = clientes
-        console.log("Imprimiendo clientes de compedidos: " + this.clientes)
+      
       },
       (error) => console.log(error)
     );
@@ -40,7 +43,7 @@ export class CompedidosComponent implements OnInit {
   createPedido(form: any) {
     this.pedidosService.saveOrders(form).subscribe(data => {
       this.router.navigateByUrl("/dashboard/pedido");
-      
+      this.pedidosComponent.showAllOrders();
 
     })
   }
