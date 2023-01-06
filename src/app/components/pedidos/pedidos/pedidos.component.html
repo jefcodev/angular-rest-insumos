@@ -28,10 +28,10 @@
                     {{i.id_pedido}}
                 </td>
                 <td>
-                    {{i.fecha_pedido | date: "M/d/yy"}}
+                    {{i.fecha_pedido | date:"short"}}
                 </td>
                 <td>
-                    {{i.fecha_entrega | date: "M/d/yy"}}
+                    {{i.fecha_entrega | date:"short"}}
                 </td>
                 <td>
                     {{i.cantidad_libras}}
@@ -74,8 +74,8 @@
                                         </div>
                                         <br>
                                         <div class="form-group">
-                                            <input type="date" [ngModel]='fechaa | date:"yyyy-MM-dd" '
-                                                (ngModelChange)='fechaa=$event' name="Nombre Ingrediente"
+                                            <input type="date" [ngModel]='fecha | date:"yyyy-MM-dd" '
+                                                (ngModelChange)='fecha=$event' name="Nombre Ingrediente"
                                                 formControlName="fecha_entrega" placeholder="asadda"
                                                 class="form-control"> <br>
                                             <input type="number" name="Nombre Ingrediente"
