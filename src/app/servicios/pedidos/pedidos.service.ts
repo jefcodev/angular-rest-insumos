@@ -20,4 +20,9 @@ export class PedidosService {
     let direccion=this.url+"pedidos";
     return this.http.post(direccion,form);
   }
+
+  updateOrders(form:any){
+    let direccion=this.url+"pedidos";
+    return this.http.put(direccion,form);
+  }
 }

@@ -55,16 +55,22 @@ export class PedidosComponent implements OnInit {
     any, ruta: any, observaciones: any, cliente: any) {
     this.formPedidoA.patchValue({
       id_pedido: id_pedido,
-      fecha_pedido: '',
+      fecha_pedido: new Date,
       fecha_entrega: fecha_entrega,
       cantidad_libras: cantidad_libras,
       ruta: ruta,
       observasiones: observaciones,
       fk_tbl_cliente_cedula: cliente
     })
+    console.log("Imprimiendo ", this.formPedidoA)
 
     this.showAllClients();
   }
 
-  
+  updateOrders(form: any) {
+    this.pedidoServices.updateOrders(form).subscribe(data => {
+     
+    })
+    console.log(form)
+  }
 }
