@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class PedidosComponent implements OnInit {
 
   clientes: ModelClientesI[] = [];
-  fechaa: '2012-12-12' | undefined;
+  fecha: "2000-03-20" | undefined;
   orders: ModelPedidosI[] = [];
   formPedidoA = new FormGroup({
     id_pedido: new FormControl(''),
@@ -27,11 +27,12 @@ export class PedidosComponent implements OnInit {
   });
 
 
-  constructor(private pedidoServices: PedidosService, private clientesService: ClientesService) { }
+  constructor(private pedidoServices: PedidosService, private clientesService: ClientesService,) { }
 
   ngOnInit(): void {
     this.showAllOrders();
     // this.showAllClients();
+    // this.fecha="2000-03-20";
   }
   showAllClients() {
     this.clientesService.getAllClients().subscribe(
@@ -69,7 +70,7 @@ export class PedidosComponent implements OnInit {
 
   updateOrders(form: any) {
     this.pedidoServices.updateOrders(form).subscribe(data => {
-     
+      this.showAllOrders()
     })
     console.log(form)
   }
