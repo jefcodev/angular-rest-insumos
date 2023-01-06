@@ -1,1 +1,37 @@
-<p>compinsumos works!</p>
+<div class="container__client">
+    <form [formGroup]="formInsumo">
+        
+        <h4>Datos Guardia</h4>
+        <div class="container__data__client">
+            <div class="select">
+                <select name="format" id="format" formControlName="fk_tbl_guardia_cedula">
+                    <option *ngFor="let c of guardias" [value]="c.cedula">{{c.nombre +' '+c.apellido}}
+                    </option>
+                </select>
+            </div>
+            <!-- <div class="container__data__label">
+                <div class="container_label">
+                    <label class="label__client" for=""> 172803901-5 </label>
+                </div>
+                <div class="container_label">
+                    <label class="label__client" for=""> Alexander Quinatoa </label>
+                </div>
+            </div> -->
+
+
+        </div>
+        <br>
+        <h4>Datos Pedido</h4>
+        <label for="start">Fecha de entrega: </label>
+        <input formControlName="fecha_salida" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+
+        <label for="tentacles"> Cantidad en libras:</label>
+        <input formControlName="cantidad_libras" type="number" id="tentacles" name="tentacles" min="10" max="100">
+
+        <label for="tentacles"> Observaciones:</label>
+        <input formControlName="observasiones" type="text" id="tentacles" name="tentacles" min="10" max="100">
+
+        <button type="button" class="btn btn-primary" (click)="createInsumo(formInsumo.value)">Guardar</button>
+
+    </form>
+</div>

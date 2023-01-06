@@ -13,4 +13,8 @@ export class DespachosService {
     let direccion=this.url+"despachos";
     return this.http.get(direccion);
   }
+  saveDespacho(form:any){
+    let direccion=this.url+"despachos";
+    return this.http.post(direccion,form);
+  }
 }
