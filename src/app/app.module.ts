@@ -20,6 +20,14 @@ import { IngresoInsumosComponent } from './components/ingreso-insumos/ingreso-in
 import { CompdespachoComponent } from './components/despachos/compdespacho/compdespacho.component';
 import { CompprestamoComponent } from './components/prestamo-tinas/compprestamo/compprestamo.component';
 import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/compinsumos.component';
+// import {
+//   MatDatepickerModule,
+//   DateAdapter,
+//   MAT_DATE_LOCALE,
+//   MAT_DATE_FORMATS
+// } from '@angular/material';
+// import { MatMomentDateModule, MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+
 
 
 @NgModule({
@@ -46,7 +54,12 @@ import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/c
     ReactiveFormsModule,
     RouterModule
   ],
-  providers: [],
+  
+  providers: [
+    // { provide: MAT_DATE_LOCALE, useValue: 'es-CL' },
+    // {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    // {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

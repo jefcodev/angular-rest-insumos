@@ -47,7 +47,8 @@ export class PedidosComponent implements OnInit {
     this.pedidoServices.getAllOrders().subscribe(
       (orders: any) => {
         this.orders = orders
-        console.log(this.orders)
+       
+       
       },
       (error) => console.log(error)
     );
@@ -56,14 +57,14 @@ export class PedidosComponent implements OnInit {
     any, ruta: any, observaciones: any, cliente: any) {
     this.formPedidoA.patchValue({
       id_pedido: id_pedido,
-      fecha_pedido: new Date,
+      fecha_pedido:new Date,
       fecha_entrega: fecha_entrega,
       cantidad_libras: cantidad_libras,
       ruta: ruta,
       observasiones: observaciones,
       fk_tbl_cliente_cedula: cliente
     })
-    console.log("Imprimiendo ", this.formPedidoA)
+    console.log("Imprimiendo ",this.formPedidoA.valueChanges)
 
     this.showAllClients();
   }
@@ -71,7 +72,8 @@ export class PedidosComponent implements OnInit {
   updateOrders(form: any) {
     this.pedidoServices.updateOrders(form).subscribe(data => {
       this.showAllOrders()
+    
     })
-    console.log(form)
+    console.log(form.id_pedido=0)
   }
 }
