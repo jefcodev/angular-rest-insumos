@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class GuardiasService {
   url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
+  // url:string='http://localhost:4000/';
+  
   constructor(private http: HttpClient) { }
 
   getAllGuards(){

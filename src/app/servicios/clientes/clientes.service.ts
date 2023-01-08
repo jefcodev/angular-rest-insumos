@@ -7,6 +7,9 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 export class ClientesService {
 
   url:string='https://app-sistemas-inventarios.herokuapp.com/';
+  // constructor(private http:HttpClient) { }
+
+  // url:string='http://localhost:4000/';
   constructor(private http:HttpClient) { }
 
   getAllClients(){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModelClientesI } from 'src/app/modelos/modelo.clientes';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientesService } from '../../servicios/clientes/clientes.service';
+import { min } from 'moment';
 
 @Component({
   selector: 'app-clientes',
@@ -11,14 +12,22 @@ import { ClientesService } from '../../servicios/clientes/clientes.service';
 export class ClientesComponent implements OnInit {
 
   clientes: ModelClientesI[] = [];
-  nClienteForm = new FormGroup({
-    cedula: new FormControl(''),
-    nombre: new FormControl(''),
-    apellido: new FormControl(''),
-    ciudad: new FormControl(''),
-    telefono: new FormControl('')
+  telefonoPattern:any=/^[0-9]*$/;
+
+  createFormGroup() {
+    return new FormGroup({
+      cedula: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[0-9]*$/)]),
+      nombre: new FormControl('', [Validators.required]),
+      apellido: new FormControl('', [Validators.required]),
+      ciudad: new FormControl('', [Validators.required]),
+      telefono: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[0-9]*$/)])
+    })
   }
-  );
+
+  // nClienteForm = new FormGroup({
+
+  // }
+  // );
   cedulaAux: string = '';
   nClienteFormA = new FormGroup({
     cedula: new FormControl(''),
@@ -29,7 +38,11 @@ export class ClientesComponent implements OnInit {
   }
   );
 
-  constructor(private clientesService: ClientesService) { }
+  nClienteForm!: FormGroup;
+
+  constructor(private clientesService: ClientesService) {
+    this.nClienteForm = this.createFormGroup();
+  }
 
   ngOnInit(): void {
     this.showAllClients();
@@ -45,11 +58,20 @@ export class ClientesComponent implements OnInit {
     );
   }
   public crearClient(form: any) {
-    this.clientesService.saveClient(form).subscribe(data => {
-      this.showAllClients();
-      this.cleanForm();
+    if (this.nClienteForm.valid) {
+      console.log(form)
+      this.clientesService.saveClient(form).subscribe(data => {
+        this.showAllClients();
+        
+        this.cleanForm();
+        console.log("vallid")
+      })
+      this.nClienteForm.reset;
+    } else {
+      console.log("error")
+      console.log(this.nClienteForm.valid)
+    }
 
-    })
   }
 
   public cleanForm() {
@@ -71,7 +93,7 @@ export class ClientesComponent implements OnInit {
       ciudad: ciudad,
       telefono: telefono
     })
-    this.cedulaAux=cedula;
+    this.cedulaAux = cedula;
     console.log(cedula)
   }
 
@@ -80,4 +102,12 @@ export class ClientesComponent implements OnInit {
       this.showAllClients();
     })
   }
+  
+
+  get cedula() { return this.nClienteForm.get('cedula'); }
+  get nombre() { return this.nClienteForm.get('nombre'); }
+  get apellido() { return this.nClienteForm.get('apellido'); }
+  get telefono() { return this.nClienteForm.get('telefono'); }
+  get ciudad() { return this.nClienteForm.get('ciudad'); }
+
 }

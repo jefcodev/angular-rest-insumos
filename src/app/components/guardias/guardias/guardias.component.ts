@@ -13,11 +13,11 @@ export class GuardiasComponent implements OnInit {
 
   guardias: ModelGuardiasI[] = [];
   nGuardiaForm = new FormGroup({
-    cedula: new FormControl(''),
-    nombre: new FormControl(''),
-    apellido: new FormControl(''),
-    telefono: new FormControl(''),
-    observaciones: new FormControl('')
+    cedula: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[0-9]*$/)]),
+    nombre: new FormControl('', [Validators.required]),
+    apellido: new FormControl('', [Validators.required]),
+    telefono: new FormControl('', [Validators.required]),
+    observaciones: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[0-9]*$/)])
   });
   cedulaAux: string = '';
 
@@ -82,5 +82,11 @@ export class GuardiasComponent implements OnInit {
       this.showAllGuards();
     })
   }
+
+  get cedula() { return this.nGuardiaForm.get('cedula'); }
+  get nombre() { return this.nGuardiaForm.get('nombre'); }
+  get apellido() { return this.nGuardiaForm.get('apellido'); }
+  get telefono() { return this.nGuardiaForm.get('telefono'); }
+  get observaciones() { return this.nGuardiaForm.get('observaciones'); }
 }
 

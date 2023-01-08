@@ -8,21 +8,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class PedidosService {
 
   url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
+  // url: string = 'http://localhost:4000/'; 
   constructor(private http: HttpClient) { }
 
-  getAllOrders(){
-    let direccion=this.url+"pedidos";
+  getAllOrders() {
+    let direccion = this.url + "pedidos";
     return this.http.get(direccion);
   }
 
-  
-  saveOrders(form:any){
-    let direccion=this.url+"pedidos";
-    return this.http.post(direccion,form);
+
+  saveOrders(form: any) {
+    let direccion = this.url + "pedidos";
+    return this.http.post(direccion, form);
   }
 
-  updateOrders(form:any){
-    let direccion=this.url+"pedidos";
-    return this.http.put(direccion,form);
+  updateOrders(form: any) {
+    let direccion = this.url + "pedidos";
+    return this.http.put(direccion, form);
   }
 }
