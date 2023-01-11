@@ -9,30 +9,47 @@
                 </select>
 
             </div>
-            <!-- <div class="container__data__label">
-                <div class="container_label">
-                    <label class="label__client" for=""> 172803901-5 </label>
-                </div>
-                <div class="container_label">
-                    <label class="label__client" for=""> Alexander Quinatoa </label>
-                </div>
-            </div> -->
-
-
+        </div>
+        <div class="alert__danger"
+            *ngIf="fk_tbl_cliente_cedula.invalid && (fk_tbl_cliente_cedula.dirty || fk_tbl_cliente_cedula.touched)">
+            <div class="container-error-message">
+                Seleccione el cliente
+            </div>
         </div>
         <br>
         <h4>Datos Pedido</h4>
         <label for="start">Fecha de entrega: </label>
-        <input formControlName="fecha_entrega" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+        <input formControlName="fecha_entrega" type="date" id="start" name="trip-start">
+        <div class="alert__danger" *ngIf="fecha_entrega.invalid && (fecha_entrega.dirty || fecha_entrega.touched)">
+            <div class="container-error-message">
+                La fecha de entrega es requerida
+            </div>
+        </div>
 
         <label for="tentacles"> Cantidad en libras:</label>
         <input formControlName="cantidad_libras" type="number" id="tentacles" name="tentacles" min="10" max="100">
+        <div class="alert__danger"
+            *ngIf="cantidad_libras.invalid && (cantidad_libras.dirty || cantidad_libras.touched)">
+            <div class="container-error-message">
+                La cantidad es necesaria
+            </div>
+        </div>
 
         <label for="tentacles">Ruta:</label>
         <input formControlName="ruta" type="text" id="tentacles" name="tentacles" min="10" max="100">
+        <div class="alert__danger" *ngIf="ruta.invalid && (ruta.dirty || ruta.touched)">
+            <div class="container-error-message">
+                La ruta es necesaria
+            </div>
+        </div>
 
         <label for="tentacles"> Observaciones:</label>
         <input formControlName="observasiones" type="text" id="tentacles" name="tentacles" min="10" max="100">
+        <div class="alert__danger" *ngIf="observasiones.invalid && (observasiones.dirty || observasiones.touched)">
+            <div class="container-error-message">
+                Las observasiones son necesarias
+            </div>
+        </div>
 
         <button type="button" class="btn btn-primary" (click)="createPedido(formPedido.value)">Guardar</button>
 

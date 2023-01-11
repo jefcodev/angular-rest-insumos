@@ -80,17 +80,22 @@
                                                 </div>
                                             </div><br>
                                             <input type="text" formControlName="telefono" class="form-control">
-                                            <div class="alert__danger" *ngIf="telefonoo.invalid && (telefonoo.dirty || telefonoo.touched)">
-                                                <div class="container-error-message" *ngIf="telefono?.errors?.['required']">
+                                            <div class="alert__danger"
+                                                *ngIf="telefonoo.invalid && (telefonoo.dirty || telefonoo.touched)">
+                                                <div class="container-error-message"
+                                                    *ngIf="telefono?.errors?.['required']">
                                                     Su teléfono es requerido
                                                 </div>
-                                                <div class="container-error-message" *ngIf="telefonoo?.errors?.['minlength']">
+                                                <div class="container-error-message"
+                                                    *ngIf="telefonoo?.errors?.['minlength']">
                                                     Su teléfono debe contener 10 digitos
                                                 </div>
-                                                <div class="container-error-message" *ngIf="telefonoo?.errors?.['maxlength']">
+                                                <div class="container-error-message"
+                                                    *ngIf="telefonoo?.errors?.['maxlength']">
                                                     Su teléfono es superior a los 10 digitos
                                                 </div>
-                                                <div class="container-error-message" *ngIf="telefonoo?.errors?.['pattern']">
+                                                <div class="container-error-message"
+                                                    *ngIf="telefonoo?.errors?.['pattern']">
                                                     Ingrese teléfono válido
                                                 </div>
                                             </div>
