@@ -6,19 +6,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DespachosService {
-  
-  url:string='https://app-sistemas-inventarios.herokuapp.com/';
+
+  url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
   // constructor(private http:HttpClient) { }
 
   // url:string='http://localhost:4000/';
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllDespachos(){
-    let direccion=this.url+"despachos";
+  getAllDespachos() {
+    let direccion = this.url + "despachos";
     return this.http.get(direccion);
   }
-  saveDespacho(form:any){
-    let direccion=this.url+"despachos";
-    return this.http.post(direccion,form);
+  saveDespacho(form: any) {
+    let direccion = this.url + "despachos";
+    return this.http.post(direccion, form);
+  }
+  updateDepachos(form: any) {
+    let direccion = this.url + "despachos";
+    return this.http.put(direccion, form);
   }
 }

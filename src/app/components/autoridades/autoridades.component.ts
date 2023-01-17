@@ -44,7 +44,7 @@ export class AutoridadesComponent implements OnInit {
       this.autoridadesServices.saveAutoridad(form).subscribe(data => {
         this.showAllAutoridades();
         // this.guardsForm();
-        this.showModalMore('center', 'succes', 'Autoridad registrado exitosamente', false, 2000);
+        this.showModalMore('center', 'success', 'Autoridad registrado exitosamente', false, 2000);
 
       })
     } else {

@@ -66,7 +66,7 @@ export class ClientesComponent implements OnInit {
         this.showAllClients();
 
         this.cleanForm();
-        this.showModalMore('center', 'succes', 'Cliente registrado exitosamente', false, 2000);
+        this.showModalMore('center', 'success', 'Cliente registrado exitosamente', false, 2000);
         // this.ShowModal('Cliente','Clientre registrado existosamente!','success');
       })
       this.nClienteForm.reset;
