@@ -1,1 +1,44 @@
-<p>devoluciones works!</p>
+<div class="col-md-12">
+    <div style="text-align: center;">
+        <h1>DEvoluciones</h1>
+    </div>
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nueva
+        Tina</button> -->
+    <br><br>
+    <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+        <thead>
+            <tr>
+                <th style="width: 10px;">ID</th>
+                <th >Cantidad</th>
+                <th >Observación</th>
+                <th >Fecha</th>
+                <th >Id Tinas</th>
+              
+
+
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of devoluciones">
+                <td>
+                    {{i.id}}
+                </td>
+                <td>
+                    {{i.cantidad}}
+                </td>
+                <td>
+                    {{i.observacion}}
+                </td>
+                <td>
+                    {{i.fecha}}
+                </td>
+                <td>
+                    {{i.fk_tbl_prestamo_tinas_id}}
+                </td>
+               
+
+            </tr>
+        </tbody>
+    </table>
+</div>
