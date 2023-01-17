@@ -20,6 +20,7 @@ import { IngresoInsumosComponent } from './components/ingreso-insumos/ingreso-in
 import { CompdespachoComponent } from './components/despachos/compdespacho/compdespacho.component';
 import { CompprestamoComponent } from './components/prestamo-tinas/compprestamo/compprestamo.component';
 import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/compinsumos.component';
+import { AutoridadesComponent } from './components/autoridades/autoridades.component';
 // import {
 //   MatDatepickerModule,
 //   DateAdapter,
@@ -44,7 +45,8 @@ import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/c
     IngresoInsumosComponent,
     CompdespachoComponent,
     CompprestamoComponent,
-    CompinsumosComponent
+    CompinsumosComponent,
+    AutoridadesComponent
   ],
   imports: [
     BrowserModule,

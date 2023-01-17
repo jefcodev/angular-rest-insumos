@@ -14,6 +14,7 @@ import { PrestamoTinasComponent } from './components/prestamo-tinas/prestamo-tin
 import { CompdespachoComponent } from './components/despachos/compdespacho/compdespacho.component';
 import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/compinsumos.component';
 import { CompprestamoComponent } from './components/prestamo-tinas/compprestamo/compprestamo.component';
+import { AutoridadesComponent } from './components/autoridades/autoridades.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -30,6 +31,8 @@ const routes: Routes = [
     path: "dashboard", component: DashboardComponent, children: [
       { path: "home", component: HomeComponent },
       { path: "cliente", component: ClientesComponent },
+      { path: "autoridad", component: AutoridadesComponent },
+
       { path: "guardia", component: GuardiasComponent },
       {
         path: "despacho", component: DespachosComponent, children: [
