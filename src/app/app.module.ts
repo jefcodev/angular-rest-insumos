@@ -21,6 +21,10 @@ import { CompdespachoComponent } from './components/despachos/compdespacho/compd
 import { CompprestamoComponent } from './components/prestamo-tinas/compprestamo/compprestamo.component';
 import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/compinsumos.component';
 import { AutoridadesComponent } from './components/autoridades/autoridades.component';
+import { TinasComponent } from './components/tinas/tinas.component';
+import { ComprasComponent } from './components/compras/compras.component';
+import { RecicladasComponent } from './components/recicladas/recicladas.component';
+import { DevolucionesComponent } from './components/devoluciones/devoluciones.component';
 // import {
 //   MatDatepickerModule,
 //   DateAdapter,
@@ -46,7 +50,11 @@ import { AutoridadesComponent } from './components/autoridades/autoridades.compo
     CompdespachoComponent,
     CompprestamoComponent,
     CompinsumosComponent,
-    AutoridadesComponent
+    AutoridadesComponent,
+    TinasComponent,
+    ComprasComponent,
+    RecicladasComponent,
+    DevolucionesComponent
   ],
   imports: [
     BrowserModule,

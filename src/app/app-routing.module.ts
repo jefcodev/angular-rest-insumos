@@ -15,6 +15,10 @@ import { CompdespachoComponent } from './components/despachos/compdespacho/compd
 import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/compinsumos.component';
 import { CompprestamoComponent } from './components/prestamo-tinas/compprestamo/compprestamo.component';
 import { AutoridadesComponent } from './components/autoridades/autoridades.component';
+import { TinasComponent } from './components/tinas/tinas.component';
+import { ComprasComponent } from './components/compras/compras.component';
+import { DevolucionesComponent } from './components/devoluciones/devoluciones.component';
+import { RecicladasComponent } from './components/recicladas/recicladas.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -32,6 +36,10 @@ const routes: Routes = [
       { path: "home", component: HomeComponent },
       { path: "cliente", component: ClientesComponent },
       { path: "autoridad", component: AutoridadesComponent },
+      { path: "tinas", component: TinasComponent },
+      { path: "compras", component: ComprasComponent },
+      { path: "devoluciones", component: DevolucionesComponent },
+      { path: "recicladas", component: RecicladasComponent },
 
       { path: "guardia", component: GuardiasComponent },
       {
