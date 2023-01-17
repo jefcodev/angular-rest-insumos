@@ -27,7 +27,8 @@ export class PedidosComponent implements OnInit {
   });
 
 
-  constructor(private pedidoServices: PedidosService, private clientesService: ClientesService,) { }
+  constructor(private pedidoServices: PedidosService, 
+    private clientesService: ClientesService) { }
 
   ngOnInit(): void {
     this.showAllOrders();

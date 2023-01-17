@@ -20,4 +20,8 @@ export class PrestamoTinasService {
     let direccion = this.url + "prestamos";
     return this.http.post(direccion, form);
   }
+  updatePrestamos(form: any) {
+    let direccion = this.url + "prestamos";
+    return this.http.put(direccion, form);
+  }
 }
