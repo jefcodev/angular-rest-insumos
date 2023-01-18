@@ -22,7 +22,7 @@ export class PrestamoTinasComponent implements OnInit {
     fecha_prestamo: new FormControl(new Date),
     fecha_entrega: new FormControl(''),
     numero_tinas: new FormControl(''),
-    numeroacta: new FormControl(''),
+    numero_acta: new FormControl(''),
     observasiones: new FormControl(''),
     fk_tbl_cliente_cedula: new FormControl('')
   })

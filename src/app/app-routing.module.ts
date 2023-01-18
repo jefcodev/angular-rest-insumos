@@ -19,6 +19,7 @@ import { TinasComponent } from './components/tinas/tinas.component';
 import { ComprasComponent } from './components/compras/compras.component';
 import { DevolucionesComponent } from './components/devoluciones/devoluciones.component';
 import { RecicladasComponent } from './components/recicladas/recicladas.component';
+import { ComrecicladasComponent } from './components/recicladas/comprecicladas/comrecicladas/comrecicladas.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -39,7 +40,10 @@ const routes: Routes = [
       { path: "tinas", component: TinasComponent },
       { path: "compras", component: ComprasComponent },
       { path: "devoluciones", component: DevolucionesComponent },
-      { path: "recicladas", component: RecicladasComponent },
+      {
+        path: "recicladas", component: RecicladasComponent, children:
+          [{ path: "comprecicladas", component: ComrecicladasComponent }]
+      },
 
       { path: "guardia", component: GuardiasComponent },
       {

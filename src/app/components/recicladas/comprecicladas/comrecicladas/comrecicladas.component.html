@@ -1,0 +1,32 @@
+<div class="container__client">
+    <form [formGroup]="formRecicladas">
+
+
+        <h4>Datos Guardia</h4>
+        <!-- <div class="container__data__client">
+            <div class="select">
+                <select name="format" id="format" formControlName="fk_tbl_autoridades_id">
+                    <option *ngFor="let c of autoridades" [value]="c.id">{{c.nombre +' '+c.apellido}}
+                    </option>
+                </select>
+            </div>
+        </div> -->
+        <br>
+        <h4>Datos Pedido</h4>
+        <label for="start">Fecha: </label>
+        <input formControlName="fecha" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+
+        <label for="tentacles"> Numero de acta:</label>
+        <input formControlName="numero_acta" type="number" id="tentacles" name="tentacles" min="10" max="100">
+
+        <label for="tentacles"> Cantidad:</label>
+        <input formControlName="cantidad" type="number" id="tentacles" name="tentacles" min="10" max="100">
+
+        
+        <label for="tentacles"> Observaciones:</label>
+        <input formControlName="observasion" type="text" id="tentacles" name="tentacles" min="10" max="100">
+
+        <button type="button" class="btn btn-primary" (click)="createRecicladas(formRecicladas.value)">Guardar</button>
+
+    </form>
+</div>

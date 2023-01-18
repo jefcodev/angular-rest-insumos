@@ -25,6 +25,7 @@ import { TinasComponent } from './components/tinas/tinas.component';
 import { ComprasComponent } from './components/compras/compras.component';
 import { RecicladasComponent } from './components/recicladas/recicladas.component';
 import { DevolucionesComponent } from './components/devoluciones/devoluciones.component';
+import { ComrecicladasComponent } from './components/recicladas/comprecicladas/comrecicladas/comrecicladas.component';
 // import {
 //   MatDatepickerModule,
 //   DateAdapter,
@@ -54,7 +55,8 @@ import { DevolucionesComponent } from './components/devoluciones/devoluciones.co
     TinasComponent,
     ComprasComponent,
     RecicladasComponent,
-    DevolucionesComponent
+    DevolucionesComponent,
+    ComrecicladasComponent
   ],
   imports: [
     BrowserModule,
