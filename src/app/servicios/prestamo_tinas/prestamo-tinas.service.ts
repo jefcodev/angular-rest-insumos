@@ -15,6 +15,10 @@ export class PrestamoTinasService {
     let direccion = this.url + "prestamos";
     return this.http.get(direccion);
   }
+  getAllPrestamoss() {
+    let direccion = this.url + "prestamoss";
+    return this.http.get(direccion);
+  }
 
   savePrestamos(form: any) {
     let direccion = this.url + "prestamos";
