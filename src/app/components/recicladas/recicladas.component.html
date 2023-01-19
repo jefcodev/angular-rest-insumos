@@ -62,25 +62,27 @@
                                     <form [formGroup]="formRecicladas">
 
                                         <div class="select">
-                                            <select name="format" id="format" formControlName="fk_tbl_guardia_cedula">
-                                                <option *ngFor="let c of guardias" [value]="c.cedula">{{c.nombre +'
+                                            <select name="format" id="format" formControlName="fk_tbl_autoridades_id">
+                                                <option *ngFor="let c of autoridades" [value]="c.id">{{c.nombre +'
                                                     '+c.apellido}}
                                                 </option>
                                             </select>
 
                                         </div>
+                                        <input type="date" [ngModel]='fecha | date:"yyyy-MM-dd" '
+                                            (ngModelChange)='fecha=$event' name="Nombre Ingrediente"
+                                            formControlName="fecha" placeholder="asadda" class="form-control">
+                                        <br>
                                         <br>
                                         <div class="form-group">
 
-                                            <input type="number" name="Nombre Ingrediente"
-                                                formControlName="cantidad_libras" placeholder="asadda"
+                                            <input type="number" name="Nombre Ingrediente" formControlName="cantidad"
                                                 class="form-control"> <br>
-                                            <input type="number" name="Nombre Ingrediente"
-                                                formControlName="numero_tinas" placeholder="" class="form-control"> <br>
-                                            <input type="text" name="Nombre Ingrediente" formControlName="ruta"
-                                                placeholder="asadda" class="form-control"> <br>
-                                            <input type="text" name="Nombre Ingrediente" formControlName="observasiones"
-                                                placeholder="asadda" class="form-control"> <br>
+                                            <input type="number" name="Nombre Ingrediente" formControlName="numero_acta"
+                                                placeholder="" class="form-control"> <br>
+
+                                            <input type="text" name="Nombre Ingrediente" formControlName="observasion"
+                                                class="form-control"> <br>
                                         </div>
 
                                         <div class="modal-footer">

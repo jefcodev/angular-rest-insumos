@@ -20,8 +20,8 @@ export class ComrecicladasComponent implements OnInit {
     fecha: new FormControl(),
     numero_acta: new FormControl(''),
     cantidad: new FormControl(''),
-    observasion: new FormControl(''),
-    fk_tbl_autoridades_id: new FormControl(1)
+    observacion: new FormControl(''),
+    fk_tbl_autoridades_id: new FormControl('')
   })
 
   constructor(private autoridadesServices: AutoridadesService,

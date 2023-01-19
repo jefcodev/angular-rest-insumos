@@ -4,6 +4,8 @@ import { RecicladasService } from '../../servicios/recicladas/recicladas.service
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModelGuardiasI } from '../../modelos/modelo.guardias';
 import { GuardiasService } from '../../servicios/guardias/guardias.service';
+import { AutoridadesService } from '../../servicios/autoridades/autoridades.service';
+import { ModelAutoridadesI } from '../../modelos/modelo.autoridades';
 
 @Component({
   selector: 'app-recicladas',
@@ -12,8 +14,10 @@ import { GuardiasService } from '../../servicios/guardias/guardias.service';
 })
 export class RecicladasComponent implements OnInit {
   recicladas: ModelRecicladasI[] = [];
+  autoridades: ModelAutoridadesI[] = [];
+  fecha: "2000-03-20" | undefined;
 
-  constructor(private guardiasService: GuardiasService, private recicladasServices: RecicladasService) { }
+  constructor(private autoridadesServices: AutoridadesService, private guardiasService: GuardiasService, private recicladasServices: RecicladasService) { }
   formRecicladas = new FormGroup({
     id: new FormControl(),
     fecha: new FormControl(),
@@ -49,25 +53,29 @@ export class RecicladasComponent implements OnInit {
       cantidad: cantidad,
       numero_acta: numero_acta,
       observasion: observacion,
-      fk_tbl_guardia_cedula: guardia
+      fk_tbl_autoridades_id: guardia
     })
-    this.showAllGuards()
+    this.showAllAutoridades()
+
   }
-
-  showAllGuards() {
-    this.guardiasService.getAllGuards().subscribe(
-      (guardias: any) => {
-        this.guardias = guardias
-
+  showAllAutoridades() {
+    this.autoridadesServices.getAllAutoridades().subscribe(
+      (autoridades: any) => {
+        this.autoridades = autoridades
+        // this.showModalMore('center', 'success', 'Despacho registrado exitosamente', false, 2000);
       },
       (error) => console.log(error)
+      // this.ShowModal('Pedido', 'Error al registrar pedido', 'error');
+
     );
   }
+
+
   updateReciclados(form: any) {
     this.recicladasServices.updateRecicladas(form).subscribe(data => {
       this.showAllRecicladas()
 
     })
-    console.log(form.id_pedido = 0)
+
   }
 }

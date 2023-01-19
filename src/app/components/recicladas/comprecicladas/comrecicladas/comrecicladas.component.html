@@ -3,14 +3,14 @@
 
 
         <h4>Datos Guardia</h4>
-        <!-- <div class="container__data__client">
+        <div class="container__data__client">
             <div class="select">
                 <select name="format" id="format" formControlName="fk_tbl_autoridades_id">
                     <option *ngFor="let c of autoridades" [value]="c.id">{{c.nombre +' '+c.apellido}}
                     </option>
                 </select>
             </div>
-        </div> -->
+        </div>
         <br>
         <h4>Datos Pedido</h4>
         <label for="start">Fecha: </label>
@@ -24,7 +24,7 @@
 
         
         <label for="tentacles"> Observaciones:</label>
-        <input formControlName="observasion" type="text" id="tentacles" name="tentacles" min="10" max="100">
+        <input formControlName="observacion" type="text" id="tentacles" name="tentacles" min="10" max="100">
 
         <button type="button" class="btn btn-primary" (click)="createRecicladas(formRecicladas.value)">Guardar</button>
 
