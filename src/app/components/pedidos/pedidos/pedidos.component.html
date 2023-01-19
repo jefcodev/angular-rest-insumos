@@ -66,8 +66,7 @@
                                     <form [formGroup]="formPedidoA">
                                         <div class="select">
                                             <select name="format" id="format" formControlName="fk_tbl_cliente_cedula">
-                                                <option *ngFor="let c of clientes" [value]="c.cedula">{{c.nombre +'
-                                                    '+c.apellido}}
+                                                <option *ngFor="let c of clientes" [value]="c.cedula">{{c.nombre +' '+ c.apellido}}
                                                 </option>
                                             </select>
 

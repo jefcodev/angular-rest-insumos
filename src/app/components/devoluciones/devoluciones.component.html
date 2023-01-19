@@ -2,18 +2,19 @@
     <div style="text-align: center;">
         <h1>DEvoluciones</h1>
     </div>
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nueva
-        Tina</button> -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearCliente">Nueva
+        devolucion</button>
     <br><br>
     <table class="table table-bordered table-hover bg-white" style="text-align: center;">
         <thead>
             <tr>
                 <th style="width: 10px;">ID</th>
-                <th >Cantidad</th>
-                <th >Observación</th>
-                <th >Fecha</th>
-                <th >Id Tinas</th>
-              
+                <th>Cantidad</th>
+                <th>Observación</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Opciones</th>
+
 
 
             </tr>
@@ -34,11 +35,113 @@
                     {{i.fecha}}
                 </td>
                 <td>
-                    {{i.fk_tbl_prestamo_tinas_id}}
+                    {{i.cliente}}
                 </td>
-               
+                <td class="d-flex justify-content-center">
+
+                    <a class="btn btn-success" data-toggle="modal" data-target="#editarGuards"
+                        (click)="getDataDevoluciones(i.id,i.cantidad,i.observacion, i.fecha,i.cliente)">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+
+                    <div class="modal fade" id="editarGuards" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Ingrediente</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="formDevolucionUpdate">
+                                        <div class="select">
+                                            <select name="format" id="format"
+                                                formControlName="fk_tbl_prestamo_tinas_id">
+                                                <option *ngFor="let c of prestamos" [value]="c.id_prestamo_tinas">
+                                                    {{c.cliente}}
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="date" [ngModel]='fecha | date:"yyyy-MM-dd" '
+                                                (ngModelChange)='fecha=$event' name="Nombre Ingrediente"
+                                                formControlName="fecha" placeholder="asadda" class="form-control">
+                                            <input type="text" formControlName="cantidad" class="form-control">
+                                            <br>
+                                            <input type="text" formControlName="observacion" class="form-control">
+                                            <br>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary"
+                                                (click)="updateAutoridades(formDevolucionUpdate.value)"
+                                                data-dismiss="modal">Actualizar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </td>
+
 
             </tr>
         </tbody>
     </table>
 </div>
+
+
+<!-- +++++++++++ MODEL CREAR UN CLIENTE +++++++++ -->
+<div class="modal fade" id="crearCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva devolucion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formDevolucion">
+
+                    <div class="select">
+                        <select name="format" id="format" formControlName="fk_tbl_prestamo_tinas_id">
+                            <option *ngFor="let c of prestamos" [value]="c.id_prestamo_tinas">{{c.cliente}}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="number" formControlName="cantidad" placeholder="Ingrese la cantidad"
+                            class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" formControlName="observacion" placeholder="Ingrese alguna observación"
+                            class="form-control">
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            (click)="crearDevolucion(formDevolucion.value)">Crear</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edutar Clkeint -->
