@@ -23,9 +23,11 @@ import { CompinsumosComponent } from './components/ingreso-insumos/compinsumos/c
 import { AutoridadesComponent } from './components/autoridades/autoridades.component';
 import { TinasComponent } from './components/tinas/tinas.component';
 import { ComprasComponent } from './components/compras/compras.component';
+import { CommonModule } from '@angular/common'
 import { RecicladasComponent } from './components/recicladas/recicladas.component';
 import { DevolucionesComponent } from './components/devoluciones/devoluciones.component';
 import { ComrecicladasComponent } from './components/recicladas/comprecicladas/comrecicladas/comrecicladas.component';
+import { HomeAComponent } from './components/homeA/home-a/home-a.component';
 // import {
 //   MatDatepickerModule,
 //   DateAdapter,
@@ -56,7 +58,9 @@ import { ComrecicladasComponent } from './components/recicladas/comprecicladas/c
     ComprasComponent,
     RecicladasComponent,
     DevolucionesComponent,
-    ComrecicladasComponent
+    ComrecicladasComponent,
+    HomeAComponent,
+    // CommonModule
   ],
   imports: [
     BrowserModule,

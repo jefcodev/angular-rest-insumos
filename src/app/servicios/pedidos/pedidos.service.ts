@@ -7,15 +7,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PedidosService {
 
-  url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
-  // url: string = 'http://localhost:4000/'; 
+  // url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
+  url: string = 'http://localhost:4000/'; 
   constructor(private http: HttpClient) { }
 
   getAllOrders() {
     let direccion = this.url + "pedidos";
     return this.http.get(direccion);
   }
-
+  getCountOrders() {
+    let direccion = this.url + "pedidosCount";
+    return this.http.get(direccion);
+  }
 
   saveOrders(form: any) {
     let direccion = this.url + "pedidos";

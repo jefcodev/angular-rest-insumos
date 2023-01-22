@@ -80,11 +80,11 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Despachos</div>
+                                Stock</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{stock}}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            <!-- <i class="fas fa-comments fa-2x text-gray-300"></i> -->
                         </div>
                     </div>
                 </div>
@@ -103,39 +103,40 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Clientes pendiente de entrega de tinas</h6>
                 </div>
+                <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Numero de tinas</th>
+                            <th>Fecha de prestamo</th>
+                            <th>Fecha de entrega</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of prestamosHome">
+                            <td>
+                                {{i.cliente}}
+                            </td>
+                            <td>
+                                {{i.numero_tinas}}
+                            </td>
+                            <td>
+                                {{i.fecha_prestamo}}
+                            </td>
+                            <td>
+                                {{i.fecha_entrega}}
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
 
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
-                        <table class="table table-bordered table-hover bg-white" style="text-align: center;">
-                            <thead>
-                                <tr>
-                                    <th>Cliente</th>
-                                    <th>Numero de tinas</th>
-                                    <th>Fecha de prestamo</th>
-                                    <th>Fecha de entrega</th>
 
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let i of prestamosHome">
-                                    <td>
-                                        {{i.cliente}}
-                                    </td>
-                                    <td>
-                                        {{i.numero_tinas}}
-                                    </td>
-                                    <td>
-                                        {{i.fecha_prestamo}}
-                                    </td>
-                                    <td>
-                                        {{i.fecha_entrega}}
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

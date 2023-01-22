@@ -20,6 +20,7 @@ import { ComprasComponent } from './components/compras/compras.component';
 import { DevolucionesComponent } from './components/devoluciones/devoluciones.component';
 import { RecicladasComponent } from './components/recicladas/recicladas.component';
 import { ComrecicladasComponent } from './components/recicladas/comprecicladas/comrecicladas/comrecicladas.component';
+import { HomeAComponent } from './components/homeA/home-a/home-a.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -35,6 +36,7 @@ const routes: Routes = [
   {
     path: "dashboard", component: DashboardComponent, children: [
       { path: "home", component: HomeComponent },
+      { path: "homeA", component: HomeAComponent },
       { path: "cliente", component: ClientesComponent },
       { path: "autoridad", component: AutoridadesComponent },
       { path: "tinas", component: TinasComponent },
