@@ -28,6 +28,7 @@ import { RecicladasComponent } from './components/recicladas/recicladas.componen
 import { DevolucionesComponent } from './components/devoluciones/devoluciones.component';
 import { ComrecicladasComponent } from './components/recicladas/comprecicladas/comrecicladas/comrecicladas.component';
 import { HomeAComponent } from './components/homeA/home-a/home-a.component';
+import { CompcompraComponent } from './components/compras/compcompra/compcompra.component';
 // import {
 //   MatDatepickerModule,
 //   DateAdapter,
@@ -60,6 +61,7 @@ import { HomeAComponent } from './components/homeA/home-a/home-a.component';
     DevolucionesComponent,
     ComrecicladasComponent,
     HomeAComponent,
+    CompcompraComponent,
     // CommonModule
   ],
   imports: [

@@ -21,6 +21,7 @@ import { DevolucionesComponent } from './components/devoluciones/devoluciones.co
 import { RecicladasComponent } from './components/recicladas/recicladas.component';
 import { ComrecicladasComponent } from './components/recicladas/comprecicladas/comrecicladas/comrecicladas.component';
 import { HomeAComponent } from './components/homeA/home-a/home-a.component';
+import { CompcompraComponent } from './components/compras/compcompra/compcompra.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -40,7 +41,11 @@ const routes: Routes = [
       { path: "cliente", component: ClientesComponent },
       { path: "autoridad", component: AutoridadesComponent },
       { path: "tinas", component: TinasComponent },
-      { path: "compras", component: ComprasComponent },
+      {
+        path: "compras", component: ComprasComponent, children: [{
+          path: "compcompra", component: CompcompraComponent
+        }]
+      },
       { path: "devoluciones", component: DevolucionesComponent },
       {
         path: "recicladas", component: RecicladasComponent, children:

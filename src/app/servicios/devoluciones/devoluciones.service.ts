@@ -7,10 +7,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DevolucionesService {
 
-  // url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
+  url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
   // constructor(private http:HttpClient) { }
 
-  url:string='http://localhost:4000/';
+  // url:string='http://localhost:4000/';
   constructor(private http: HttpClient) { }
 
   getAllDevoluciones() {
