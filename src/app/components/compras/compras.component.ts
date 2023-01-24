@@ -18,11 +18,11 @@ export class ComprasComponent implements OnInit {
 
   formEditCompras = new FormGroup({
     id_compras: new FormControl(''),
-    fecha: new FormControl(new Date),
-    numero_acta: new FormControl(''),
-    cantidad: new FormControl(''),
+    numero_acta: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+    cantidad: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
     observacion: new FormControl(''),
-    fk_tbl_autoridades_id: new FormControl('')
+    fk_tbl_autoridades_id: new FormControl('', [Validators.required]),
+
   });
   fecha: "2000-03-20" | undefined;
 
@@ -70,8 +70,16 @@ export class ComprasComponent implements OnInit {
   updateCompras(form: any) {
     this.comprasServices.updateCompras(form).subscribe(data => {
       // this.showAllOrders()
-    
+
     })
     // console.log(form.id_pedido=0)
   }
+
+  get fechas() { return this.formEditCompras.get('fecha'); }
+  get numero_actaa() { return this.formEditCompras.get('numero_acta'); }
+  get cantidadd() { return this.formEditCompras.get('cantidad'); }
+  // get observacion() { return this.formCompra.get('observacion'); }
+  get fk_tbl_autoridades_idd() { return this.formEditCompras.get('fk_tbl_autoridades_id'); }
+
+
 }

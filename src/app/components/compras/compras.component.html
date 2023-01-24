@@ -68,17 +68,38 @@
                                                     c.apellido}}
                                                 </option>
                                             </select>
-
+                                            <div class="alert__danger"
+                                                *ngIf="fk_tbl_autoridades_idd.invalid && (fk_tbl_autoridades_idd.dirty ||  fk_tbl_autoridades_idd.touched)">
+                                                <div class="container-error-message">
+                                                    Seleccione una autoridad
+                                                </div>
+                                            </div>
                                         </div>
                                         <br>
                                         <div class="form-group">
                                             <input type="date" [ngModel]='fecha | date:"yyyy-MM-dd" '
                                                 (ngModelChange)='fecha=$event' name="Nombre Ingrediente"
-                                                formControlName="fecha" class="form-control"> <br>
+                                                formControlName="fecha" class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="fechas.invalid && (fechas.dirty ||  fechas.touched)">
+                                                <div class="container-error-message">
+                                                    La fecha es requerida
+                                                </div>
+                                            </div> <br>
                                             <input type="number" name="Nombre Ingrediente" formControlName="cantidad"
-                                                class="form-control"> <br>
+                                                class="form-control">
+                                                <div class="alert__danger" *ngIf="cantidadd.invalid && (cantidadd.dirty ||  cantidadd.touched)">
+                                                    <div class="container-error-message">
+                                                        La cantidad es requerida
+                                                    </div>
+                                                </div> <br>
                                             <input type="text" name="Nombre Ingrediente" formControlName="numero_acta"
-                                                class="form-control"> <br>
+                                                class="form-control">
+                                                <div class="alert__danger" *ngIf="numero_actaa.invalid && (numero_actaa.dirty ||  numero_actaa.touched)">
+                                                    <div class="container-error-message">
+                                                        El número de acta es requerida
+                                                    </div>
+                                                </div> <br>
                                             <input type="text" name="Nombre Ingrediente" formControlName="observacion"
                                                 class="form-control"> <br>
                                         </div>

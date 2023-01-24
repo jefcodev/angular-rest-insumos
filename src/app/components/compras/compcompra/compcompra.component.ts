@@ -4,6 +4,8 @@ import { ModelAutoridadesI } from '../../../modelos/modelo.autoridades';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ComprasService } from '../../../servicios/compras/compras.service';
+import { Router } from '@angular/router';
+import { ComprasComponent } from '../compras.component';
 
 @Component({
   selector: 'app-compcompra',
@@ -15,16 +17,17 @@ export class CompcompraComponent implements OnInit {
   autoridades: ModelAutoridadesI[] = [];
 
   formCompra = new FormGroup({
-    fecha: new FormControl(''),
-    numero_acta: new FormControl(''),
-    cantidad: new FormControl(''),
+    fecha: new FormControl('', [Validators.required]),
+    numero_acta: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
+    cantidad: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
     observacion: new FormControl(''),
-    fk_tbl_autoridades_id: new FormControl(''),
+    fk_tbl_autoridades_id: new FormControl('', [Validators.required]),
 
 
   });
 
-  constructor(private autoridadesServices: AutoridadesService, private comprasServices:ComprasService) { }
+  constructor(private autoridadesServices: AutoridadesService, private comprasServices: ComprasService,
+    private router: Router, private comprasComponent: ComprasComponent) { }
 
   ngOnInit(): void {
     this.showAllAutoridades();
@@ -42,15 +45,16 @@ export class CompcompraComponent implements OnInit {
   }
 
   createCompra(form: any) {
-    // if (this.formPedido.valid) {
+    if (this.formCompra.valid) {
       this.comprasServices.saveCompras(form).subscribe(data => {
-        // this.router.navigateByUrl("/dashboard/pedido");
-        // this.pedidosComponent.showAllOrders();
+        this.router.navigateByUrl("/dashboard/compras");
+        this.comprasComponent.showAllCompras();
         this.showModalMore('center', 'success', 'Compra registrado exitosamente', false, 2000);
       })
-    // } else {
-    //   this.ShowModal('Pedido', 'Error al registrar pedido', 'error');
-    // }
+    } else {
+      this.ShowModal('Compra', 'Error al registrar compra', 'error');
+      this.router.navigateByUrl("/dashboard/compras");
+    }
 
   }
 
@@ -66,5 +70,14 @@ export class CompcompraComponent implements OnInit {
       timer: timer
     });
   }
+
+
+  get fecha() { return this.formCompra.get('fecha'); }
+  get numero_acta() { return this.formCompra.get('numero_acta'); }
+  get cantidad() { return this.formCompra.get('cantidad'); }
+  // get observacion() { return this.formCompra.get('observacion'); }
+  get fk_tbl_autoridades_id() { return this.formCompra.get('fk_tbl_autoridades_id'); }
+
+
 
 }
