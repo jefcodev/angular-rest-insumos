@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ModelComprasI } from 'src/app/modelos/modelo.compras';
 import { ComprasService } from 'src/app/servicios/compras/compras.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -14,22 +14,28 @@ export class ComprasComponent implements OnInit {
   compras: ModelComprasI[] = [];
   autoridades: ModelAutoridadesI[] = [];
 
-  constructor(private comprasServices: ComprasService, private autoridadesServices: AutoridadesService) { }
+  constructor(private cd: ChangeDetectorRef, private comprasServices: ComprasService, private autoridadesServices: AutoridadesService) { }
 
   formEditCompras = new FormGroup({
     id_compras: new FormControl(''),
+    fecha: new FormControl(''),
     numero_acta: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
     cantidad: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
     observacion: new FormControl(''),
     fk_tbl_autoridades_id: new FormControl('', [Validators.required]),
 
   });
-  fecha: "2000-03-20" | undefined;
+  fe!: Date;
+
+  fechasx: Date = new Date;
+  public f: Date = new Date;
+
 
 
 
   ngOnInit(): void {
     this.showAllCompras()
+
   }
 
   showAllAutoridades() {
@@ -54,24 +60,38 @@ export class ComprasComponent implements OnInit {
 
   getDataCompras(id_compras: any, fecha: any, numero_acta:
     any, cantidad: any, observacion: any, autoridad: any) {
+
+
     this.formEditCompras.patchValue({
+
       id_compras: id_compras,
-      fecha: fecha,
+      fecha: new Date,
       numero_acta: numero_acta,
       cantidad: cantidad,
       observacion: observacion,
       fk_tbl_autoridades_id: autoridad
+
     })
+    // setTimeout(() => {
+    //   this.fe = fecha;
+    // }, 0);
+    Promise.resolve().then(() => {
+      this.fe = fecha;
+    })
+    this.cd.detectChanges();
+
     console.log("Imprimiendo ", this.formEditCompras.value)
 
     this.showAllAutoridades();
   }
 
   updateCompras(form: any) {
+
     this.comprasServices.updateCompras(form).subscribe(data => {
       // this.showAllOrders()
 
     })
+    this.cd.detectChanges();
     // console.log(form.id_pedido=0)
   }
 

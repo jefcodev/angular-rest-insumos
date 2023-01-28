@@ -47,7 +47,7 @@ export class RecicladasComponent implements OnInit {
 
   getDataReciclados(id: any, fecha: any, cantidad:
     any, numero_acta: any, observacion: any, guardia: any) {
-    this.formRecicladas.patchValue({
+    this.formRecicladas.setValue({
       id: id,
       fecha: fecha,
       cantidad: cantidad,
@@ -55,6 +55,7 @@ export class RecicladasComponent implements OnInit {
       observasion: observacion,
       fk_tbl_autoridades_id: guardia
     })
+    console.log(this.formRecicladas)
     this.showAllAutoridades()
 
   }
