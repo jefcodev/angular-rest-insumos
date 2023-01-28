@@ -74,10 +74,10 @@ export class RecicladasComponent implements OnInit {
 
   updateReciclados(form: any) {
     console.log(form)
-    // this.recicladasServices.updateRecicladas(form).subscribe(data => {
-    //   this.showAllRecicladas()
+    this.recicladasServices.updateRecicladas(form).subscribe(data => {
+      this.showAllRecicladas()
 
-    // })
+    })
 
   }
 }
