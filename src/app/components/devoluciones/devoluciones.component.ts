@@ -6,6 +6,7 @@ import { PrestamoTinasComponent } from '../prestamo-tinas/prestamo-tinas.compone
 import { PrestamoTinasService } from '../../servicios/prestamo_tinas/prestamo-tinas.service';
 import { ModelTinasI } from '../../modelos/modelo.prestamo_tinas';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../servicios/kardex/kardex.service';
 
 
 @Component({
@@ -17,6 +18,17 @@ export class DevolucionesComponent implements OnInit {
 
   fecha: "" | undefined;
 
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
   formDevolucion = new FormGroup({
     cantidad: new FormControl('', [Validators.required]),
     fecha: new FormControl(new Date),
@@ -35,7 +47,7 @@ export class DevolucionesComponent implements OnInit {
   });
   prestamos: ModelTinasI[] = [];
 
-  constructor(private devolucionesServices: DevolucionesService, private prestamoTinasServices: PrestamoTinasService) { }
+  constructor(private dexServices: KardexService, private devolucionesServices: DevolucionesService, private prestamoTinasServices: PrestamoTinasService) { }
   devoluciones: ModelDevolucionesI[] = [];
   ngOnInit(): void {
     this.showAllDevoluciones()
@@ -68,7 +80,20 @@ export class DevolucionesComponent implements OnInit {
         this.showAllDevoluciones();
         // this.guardsForm();
         this.showModalMore('center', 'success', 'Devolución registrado exitosamente', false, 2000);
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Devolución",
+          accion: "Crear",
+          cantidad: form.cantidad,
+          ayudante: "",
+          cliente: form.fk_tbl_prestamo_tinas_id,
+          observacion: form.observacion,
+          numero_acta: "",
+          usuario: "Admin",
+        })
 
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
       })
     } else {
       this.ShowModal('Devolución', 'Error al registrar devolución', 'error');
@@ -105,6 +130,20 @@ export class DevolucionesComponent implements OnInit {
       this.devolucionesServices.updateDevoluciones(form).subscribe(data => {
         this.showAllDevoluciones();
         this.showModalMore('center', 'success', 'Devolución actualizada correctamente', false, 1500);
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Devolución",
+          accion: "Editar",
+          cantidad: form.cantidad,
+          ayudante: "",
+          cliente: form.fk_tbl_prestamo_tinas_id,
+          observacion: form.observacion,
+          numero_acta: "",
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
       })
     } else {
       this.ShowModal('Devolución', 'Error al actualizar devolución', 'error');

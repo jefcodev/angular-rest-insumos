@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GuardiasService } from '../../servicios/guardias/guardias.service';
 import { ModelGuardiasI } from '../../modelos/modelo.guardias';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-ingreso-insumos',
@@ -16,6 +17,18 @@ export class IngresoInsumosComponent implements OnInit {
   insumos: ModelInsumosI[] = [];
   fecha_ingreso: "2000-03-20" | undefined;
   fecha_salida: "2000-03-20" | undefined;
+
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
 
   get fecha_salid() { return this.formEditInsumo.get('fecha_salida'); }
   get cantidad_libras() { return this.formEditInsumo.get('cantidad_libras'); }
@@ -30,7 +43,7 @@ export class IngresoInsumosComponent implements OnInit {
     observasiones: new FormControl(''),
     fk_tbl_guardia_cedula: new FormControl('', [Validators.required])
   })
-  constructor(private guardiaService: GuardiasService, private insumosService: IngresoInsumosService) { }
+  constructor(private guardiaService: GuardiasService, private insumosService: IngresoInsumosService, private dexServices: KardexService) { }
 
   ngOnInit(): void {
     this.showAllInsumos();
@@ -64,9 +77,26 @@ export class IngresoInsumosComponent implements OnInit {
 
       this.insumosService.updateInsumos(form).subscribe(data => {
         this.showAllInsumos();
+        this.showModalMore('center', 'success', 'Insumo actualizado correctamente', false, 1500);
+
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Insumos",
+          accion: "Actualizar",
+          cantidad: form.cantidad_libras,
+          ayudante: form.fk_tbl_guardia_cedula,
+          cliente: "",
+          observacion: form.observasiones,
+          numero_acta: "",
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
 
       })
     } else {
+      this.ShowModal('Insumo', 'Error al actualizar', 'error');
 
     }
 

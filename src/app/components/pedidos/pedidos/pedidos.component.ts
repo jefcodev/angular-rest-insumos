@@ -6,6 +6,7 @@ import { ClientesService } from 'src/app/servicios/clientes/clientes.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { identifierName } from '@angular/compiler/public_api';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../../servicios/kardex/kardex.service';
 
 
 @Component({
@@ -14,6 +15,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./pedidos.component.scss']
 })
 export class PedidosComponent implements OnInit {
+
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
+
 
   clientes: ModelClientesI[] = [];
   fecha: "2000-03-20" | undefined;
@@ -30,7 +44,7 @@ export class PedidosComponent implements OnInit {
 
 
   constructor(private pedidoServices: PedidosService,
-    private clientesService: ClientesService) { }
+    private clientesService: ClientesService, private dexServices: KardexService) { }
 
   ngOnInit(): void {
     this.showAllOrders();
@@ -78,6 +92,20 @@ export class PedidosComponent implements OnInit {
 
         this.showModalMore('center', 'success', 'Pedido actualizado correctamente', false, 1500);
         this.showAllOrders()
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Pedido",
+          accion: "Actualizar",
+          cantidad: form.cantidad_libras,
+          ayudante: "",
+          cliente: form.fk_tbl_cliente_cedula,
+          observacion: form.observasiones,
+          numero_acta: "",
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
       })
     } else {
       this.ShowModal('Pedido', 'Error al actualizar pedido', 'error');

@@ -1,1 +1,62 @@
-<p>kardex works!</p>
+<div class="col-md-12">
+    <div style="text-align: center;">
+        <h1>KARDEX</h1>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover bg-white" style="text-align: center;">
+        <thead>
+            <tr>
+
+                <th>Fecha</th>
+                <th>Movimiento</th>
+                <th>Acción</th>
+                <th>Cantidad</th>
+
+                <th>Ayudante</th>
+                <th>Cliente</th>
+                <th>Observación</th>
+                <th>Número de acta</th>
+                <th>Usuario</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of kardex">
+                <td>
+                    {{i.fecha_actual | date:"yyyy-MM-dd"}}
+                </td>
+                <td>
+                    {{i.movimiento}}
+                </td>
+                <td>
+                    {{i.accion}}
+                </td>
+                <td>
+                    {{i.cantidad}}
+                </td>
+                <td>
+                    {{i.ayudante}}
+                </td>
+                <td>
+                    {{i.cliente}}
+                </td>
+                <td>
+                    {{i.observacion}}
+                </td>
+                <td>
+                    {{i.numero_acta}}
+                </td>
+                <td>
+                    {{i.usuario}}
+                </td>
+
+
+
+
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>

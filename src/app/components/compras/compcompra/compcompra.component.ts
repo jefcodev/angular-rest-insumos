@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { ComprasService } from '../../../servicios/compras/compras.service';
 import { Router } from '@angular/router';
 import { ComprasComponent } from '../compras.component';
+import { KardexService } from '../../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-compcompra',
@@ -15,6 +16,19 @@ import { ComprasComponent } from '../compras.component';
 export class CompcompraComponent implements OnInit {
 
   autoridades: ModelAutoridadesI[] = [];
+
+
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
 
   formCompra = new FormGroup({
     fecha: new FormControl('', [Validators.required]),
@@ -27,7 +41,7 @@ export class CompcompraComponent implements OnInit {
   });
 
   constructor(private autoridadesServices: AutoridadesService, private comprasServices: ComprasService,
-    private router: Router, private comprasComponent: ComprasComponent) { }
+    private router: Router, private comprasComponent: ComprasComponent, private dexServices: KardexService) { }
 
   ngOnInit(): void {
     this.showAllAutoridades();
@@ -48,9 +62,28 @@ export class CompcompraComponent implements OnInit {
     if (this.formCompra.valid) {
       this.comprasServices.saveCompras(form).subscribe(data => {
         this.router.navigateByUrl("/dashboard/compras");
-        this.comprasComponent.showAllCompras();
         this.showModalMore('center', 'success', 'Compra registrado exitosamente', false, 2000);
+        this.comprasComponent.showAllCompras();
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Compra",
+          accion: "Crear",
+          cantidad: form.cantidad,
+          ayudante: form.fk_tbl_autoridades_id,
+          cliente: "",
+          observacion: form.observacion,
+          numero_acta: form.numero_acta,
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
+
+
       })
+
+
+
     } else {
       this.ShowModal('Compra', 'Error al registrar compra', 'error');
       this.router.navigateByUrl("/dashboard/compras");

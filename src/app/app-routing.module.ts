@@ -22,6 +22,7 @@ import { RecicladasComponent } from './components/recicladas/recicladas.componen
 import { ComrecicladasComponent } from './components/recicladas/comprecicladas/comrecicladas/comrecicladas.component';
 import { HomeAComponent } from './components/homeA/home-a/home-a.component';
 import { CompcompraComponent } from './components/compras/compcompra/compcompra.component';
+import { KardexComponent } from './components/kardex/kardex.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -33,11 +34,13 @@ const routes: Routes = [
   { path: "compedido", component: CompedidosComponent },
   { path: "despacho", component: DespachosComponent },
   { path: "insumos", component: DespachosComponent },
+  
   { path: "prestamo", component: DespachosComponent },
   {
     path: "dashboard", component: DashboardComponent, children: [
       { path: "home", component: HomeComponent },
       { path: "homeA", component: HomeAComponent },
+      { path: "kardex", component: KardexComponent },
       { path: "cliente", component: ClientesComponent },
       { path: "autoridad", component: AutoridadesComponent },
       { path: "tinas", component: TinasComponent },

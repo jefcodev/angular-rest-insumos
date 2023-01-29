@@ -7,6 +7,7 @@ import { GuardiasService } from '../../servicios/guardias/guardias.service';
 import { AutoridadesService } from '../../servicios/autoridades/autoridades.service';
 import { ModelAutoridadesI } from '../../modelos/modelo.autoridades';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-recicladas',
@@ -17,14 +18,26 @@ export class RecicladasComponent implements OnInit {
   recicladas: ModelRecicladasI[] = [];
   autoridades: ModelAutoridadesI[] = [];
   fecha: "2000-03-20" | undefined;
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
 
-  constructor(private autoridadesServices: AutoridadesService, private guardiasService: GuardiasService, private recicladasServices: RecicladasService) { }
+
+  constructor(private dexServices: KardexService, private autoridadesServices: AutoridadesService, private guardiasService: GuardiasService, private recicladasServices: RecicladasService) { }
   formRecicladas = new FormGroup({
     id: new FormControl(''),
     fecha: new FormControl('', [Validators.required]),
     cantidad: new FormControl('', [Validators.required]),
     numero_acta: new FormControl('', [Validators.required]),
-    observasion: new FormControl(''),
+    observacion: new FormControl(''),
     fk_tbl_autoridades_id: new FormControl('', [Validators.required])
   })
 
@@ -53,7 +66,7 @@ export class RecicladasComponent implements OnInit {
       fecha: fecha,
       cantidad: cantidad,
       numero_acta: numero_acta,
-      observasion: observacion,
+      observacion: observacion,
       fk_tbl_autoridades_id: null
     })
     console.log(this.formRecicladas)
@@ -74,11 +87,26 @@ export class RecicladasComponent implements OnInit {
 
 
   updateReciclados(form: any) {
+    console.log(form)
     if (this.formRecicladas.valid) {
       this.recicladasServices.updateRecicladas(form).subscribe(data => {
         this.showModalMore('center', 'success', 'Reciclado actualizada correctamente', false, 1500);
 
         this.showAllRecicladas()
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Recicladas",
+          accion: "Actualizar",
+          cantidad: form.cantidad,
+          ayudante: form.fk_tbl_autoridades_id,
+          cliente: "",
+          observacion: form.observacion,
+          numero_acta: form.numero_acta,
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
 
       })
     } else {

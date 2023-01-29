@@ -7,6 +7,7 @@ import { ClientesService } from 'src/app/servicios/clientes/clientes.service';
 import { ModelGuardiasI } from '../../modelos/modelo.guardias';
 import { GuardiasService } from 'src/app/servicios/guardias/guardias.service';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../servicios/kardex/kardex.service';
 
 
 @Component({
@@ -27,6 +28,18 @@ export class DespachosComponent implements OnInit {
   get fk_tbl_guardia_cedula() { return this.formDespacho.get('fk_tbl_guardia_cedula'); }
 
 
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
+
 
   formDespacho = new FormGroup({
     id_despacho: new FormControl(''),
@@ -42,7 +55,7 @@ export class DespachosComponent implements OnInit {
   constructor(private despachoServicio: DespachosService,
     private clientesService: ClientesService,
     private guardiasService: GuardiasService,
-    private despachoServices: DespachosService) { }
+    private despachoServices: DespachosService, private dexServices: KardexService) { }
 
   ngOnInit(): void {
     this.showAllDespachos();
@@ -101,6 +114,20 @@ export class DespachosComponent implements OnInit {
         this.showModalMore('center', 'success', 'Despacho actualizada correctamente', false, 1500);
 
         this.showAllDespachos()
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Despacho",
+          accion: "Actualizar",
+          cantidad: form.cantidad_libras,
+          ayudante: form.fk_tbl_guardia_cedula,
+          cliente: form.fk_tbl_cliente_cedula,
+          observacion: form.observasiones,
+          numero_acta: "",
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
       })
     } else {
       this.ShowModal('Despacho', 'Error al actualizar despacho', 'error');

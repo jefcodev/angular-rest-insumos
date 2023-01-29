@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientesService } from '../../servicios/clientes/clientes.service';
 import { ModelClientesI } from '../../modelos/modelo.clientes';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-prestamo-tinas',
@@ -12,6 +13,18 @@ import Swal from 'sweetalert2';
   styleUrls: ['./prestamo-tinas.component.scss']
 })
 export class PrestamoTinasComponent implements OnInit {
+
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
 
   prestamoTinas: ModelTinasI[] = [];
   clientes: ModelClientesI[] = [];
@@ -35,7 +48,7 @@ export class PrestamoTinasComponent implements OnInit {
 
 
   constructor(private prestamoTinasService: PrestamoTinasService,
-    private clientesService: ClientesService) { }
+    private clientesService: ClientesService, private dexServices: KardexService) { }
 
   ngOnInit(): void {
     this.showAllPrestamo();
@@ -85,6 +98,21 @@ export class PrestamoTinasComponent implements OnInit {
         this.showModalMore('center', 'success', 'Prestamo actualizado correctamente', false, 1500);
 
         this.showAllPrestamo()
+
+        // this.formBitacora.setValue({
+        //   fecha_actual: new Date,
+        //   movimiento: "Prestamo",
+        //   accion: "Actualizar",
+        //   cantidad: "",
+        //   ayudante: "",
+        //   cliente: "1724694062",
+        //   observacion: "",
+        //   numero_acta: "",
+        //   usuario: "Admin",
+        // })
+
+        // this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        // })
 
       })
     } else {

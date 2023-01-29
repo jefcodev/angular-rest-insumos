@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModelAutoridadesI } from '../../modelos/modelo.autoridades';
 import { AutoridadesService } from '../../servicios/autoridades/autoridades.service';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-compras',
@@ -15,8 +16,18 @@ export class ComprasComponent implements OnInit {
   compras: ModelComprasI[] = [];
   autoridades: ModelAutoridadesI[] = [];
 
-  constructor(private cd: ChangeDetectorRef, private comprasServices: ComprasService, private autoridadesServices: AutoridadesService) { }
-
+  constructor(private cd: ChangeDetectorRef, private comprasServices: ComprasService, private autoridadesServices: AutoridadesService, private dexServices: KardexService) { }
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
   formEditCompras = new FormGroup({
     id_compras: new FormControl(''),
     fecha: new FormControl('', [Validators.required]),
@@ -90,6 +101,24 @@ export class ComprasComponent implements OnInit {
       this.comprasServices.updateCompras(form).subscribe(data => {
         this.showModalMore('center', 'success', 'Compra actualizada correctamente', false, 1500);
         this.showAllCompras()
+
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Compra",
+          accion: "Editar",
+          cantidad: form.cantidad,
+          ayudante: form.fk_tbl_autoridades_id,
+          cliente: "",
+          observacion: form.observacion,
+          numero_acta: form.numero_acta,
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
+
+
+
       })
     } else {
       this.ShowModal('Compra', 'Error al actualizar compra', 'error');

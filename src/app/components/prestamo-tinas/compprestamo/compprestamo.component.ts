@@ -6,6 +6,7 @@ import { ModelClientesI } from 'src/app/modelos/modelo.clientes';
 import { PrestamoTinasService } from 'src/app/servicios/prestamo_tinas/prestamo-tinas.service';
 import { PrestamoTinasComponent } from '../prestamo-tinas.component';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../../servicios/kardex/kardex.service';
 
 
 @Component({
@@ -22,7 +23,17 @@ export class CompprestamoComponent implements OnInit {
   get numero_acta() { return this.formPrestamo.get('numero_acta'); }
   get fk_tbl_cliente_cedula() { return this.formPrestamo.get('fk_tbl_cliente_cedula'); }
 
-
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
 
   formPrestamo = new FormGroup({
     fecha_prestamo: new FormControl(new Date),
@@ -34,7 +45,7 @@ export class CompprestamoComponent implements OnInit {
   })
 
   constructor(private clientesService: ClientesService,
-    private prestamoTinasServices: PrestamoTinasService, private router: Router, private prestamoTinasComponent: PrestamoTinasComponent) { }
+    private prestamoTinasServices: PrestamoTinasService, private router: Router, private prestamoTinasComponent: PrestamoTinasComponent, private dexServices: KardexService) { }
 
   ngOnInit(): void {
     this.showAllClients()
@@ -57,6 +68,19 @@ export class CompprestamoComponent implements OnInit {
         this.showModalMore('center', 'success', 'Prestamo registrado exitosamente', false, 2000);
 
         this.prestamoTinasComponent.showAllPrestamo()
+        // this.formBitacora.setValue({
+        //   fecha_actual: new Date,
+        //   movimiento: "Prestamo",
+        //   accion: "Actualizar",
+        //   cantidad: "",
+        //   ayudante: "",
+        //   cliente: "1724694062",
+        //   observacion: "",
+        //   numero_acta: "",
+        //   usuario: "Admin",
+        // })
+        // this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        // })
 
       })
     } else {

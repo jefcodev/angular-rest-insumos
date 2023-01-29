@@ -6,6 +6,7 @@ import { RecicladasService } from '../../../../servicios/recicladas/recicladas.s
 import { Router } from '@angular/router';
 import { ModelAutoridadesI } from '../../../../modelos/modelo.autoridades';
 import { AutoridadesService } from '../../../../servicios/autoridades/autoridades.service';
+import { KardexService } from '../../../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-comrecicladas',
@@ -20,6 +21,17 @@ export class ComrecicladasComponent implements OnInit {
   get cantidad() { return this.formRecicladas.get('cantidad'); }
   get fk_tbl_autoridades_id() { return this.formRecicladas.get('fk_tbl_autoridades_id'); }
 
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
 
   formRecicladas = new FormGroup({
     fecha: new FormControl('', [Validators.required]),
@@ -31,7 +43,7 @@ export class ComrecicladasComponent implements OnInit {
 
   constructor(private autoridadesServices: AutoridadesService,
     private recicladasServices: RecicladasService, private recicladasComponent: RecicladasComponent,
-    private router: Router) { }
+    private router: Router,private dexServices: KardexService) { }
 
   ngOnInit(): void {
     this.showAllAutoridades();
@@ -55,7 +67,20 @@ export class ComrecicladasComponent implements OnInit {
         this.router.navigateByUrl("/dashboard/recicladas");
         this.recicladasComponent.showAllRecicladas();
         this.showModalMore('center', 'success', 'Reciclado registrado exitosamente', false, 2000);
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Recicladas",
+          accion: "Crear",
+          cantidad: form.cantidad,
+          ayudante: form.fk_tbl_autoridades_id,
+          cliente: "",
+          observacion: form.observacion,
+          numero_acta: form.numero_acta,
+          usuario: "Admin",
+        })
 
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
       })
 
     } else {

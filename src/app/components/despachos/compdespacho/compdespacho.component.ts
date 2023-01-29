@@ -9,6 +9,7 @@ import { ModelGuardiasI } from 'src/app/modelos/modelo.guardias';
 import { DespachosService } from 'src/app/servicios/despachos/despachos.service';
 import { DespachosComponent } from '../despachos.component';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-compdespacho',
@@ -19,6 +20,19 @@ export class CompdespachoComponent implements OnInit {
 
   clientes: ModelClientesI[] = [];
   guardias: ModelGuardiasI[] = [];
+
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
+
 
   get cantidad_libras() { return this.formDespacho.get('cantidad_libras'); }
   get numero_tinas() { return this.formDespacho.get('numero_tinas'); }
@@ -41,7 +55,7 @@ export class CompdespachoComponent implements OnInit {
     private guardiasservices: GuardiasService,
     private despachoServices: DespachosService,
     private router: Router,
-    private despachoComponent: DespachosComponent) { }
+    private despachoComponent: DespachosComponent, private dexServices: KardexService) { }
 
   ngOnInit(): void {
     this.showAllClients()
@@ -77,6 +91,21 @@ export class CompdespachoComponent implements OnInit {
         this.showModalMore('center', 'success', 'Descapacho registrado exitosamente', false, 2000);
 
         this.despachoComponent.showAllDespachos();
+
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Despacho",
+          accion: "Crear",
+          cantidad: form.cantidad_libras,
+          ayudante: form.fk_tbl_guardia_cedula,
+          cliente: form.fk_tbl_cliente_cedula,
+          observacion: form.observasiones,
+          numero_acta: "",
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
       })
     } else {
       this.ShowModal('Despacho', 'Error al registrar despacho', 'error');

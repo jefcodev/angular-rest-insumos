@@ -6,6 +6,7 @@ import { IngresoInsumosService } from '../../../servicios/ingreso_insumos/ingres
 import { Router } from '@angular/router';
 import { IngresoInsumosComponent } from '../ingreso-insumos.component';
 import Swal from 'sweetalert2';
+import { KardexService } from '../../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-compinsumos',
@@ -15,6 +16,18 @@ import Swal from 'sweetalert2';
 export class CompinsumosComponent implements OnInit {
 
   guardias: ModelGuardiasI[] = [];
+
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
 
   get fecha_salida() { return this.formInsumo.get('fecha_salida'); }
   get cantidad_libras() { return this.formInsumo.get('cantidad_libras'); }
@@ -29,7 +42,7 @@ export class CompinsumosComponent implements OnInit {
   })
 
   constructor(private guardiasservices: GuardiasService, private router: Router, private insumoServices: IngresoInsumosService,
-    private ingresoInsumosComponent: IngresoInsumosComponent) { }
+    private ingresoInsumosComponent: IngresoInsumosComponent,  private dexServices: KardexService) { }
 
 
   ngOnInit(): void {
@@ -52,6 +65,20 @@ export class CompinsumosComponent implements OnInit {
         this.router.navigateByUrl("/dashboard/insumo");
         this.ingresoInsumosComponent.showAllInsumos();
         this.showModalMore('center', 'success', 'Insumo registrado exitosamente', false, 2000);
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Insumos",
+          accion: "Crear",
+          cantidad: form.cantidad_libras,
+          ayudante: form.fk_tbl_guardia_cedula,
+          cliente: "",
+          observacion: form.observasiones,
+          numero_acta: "",
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
 
       })
     } else {

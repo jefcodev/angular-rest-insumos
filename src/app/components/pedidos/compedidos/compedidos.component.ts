@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { PedidosComponent } from '../pedidos/pedidos.component';
 import Swal from 'sweetalert2';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { KardexService } from '../../../servicios/kardex/kardex.service';
 
 @Component({
   selector: 'app-compedidos',
@@ -15,9 +16,22 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class CompedidosComponent implements OnInit {
 
+
+  formBitacora = new FormGroup({
+    fecha_actual: new FormControl(''),
+    movimiento: new FormControl(''),
+    accion: new FormControl(''),
+    cantidad: new FormControl(''),
+    ayudante: new FormControl(''),
+    cliente: new FormControl(''),
+    observacion: new FormControl(''),
+    numero_acta: new FormControl(''),
+    usuario: new FormControl('')
+  });
+
   clientes: ModelClientesI[] = [];
   constructor(private clientesService: ClientesService, private pedidosService: PedidosService, private router: Router,
-    private pedidosComponent: PedidosComponent) { }
+    private pedidosComponent: PedidosComponent, private dexServices: KardexService) { }
 
   formPedido = new FormGroup({
     fecha_pedido: new FormControl(new Date),
@@ -48,6 +62,21 @@ export class CompedidosComponent implements OnInit {
         this.router.navigateByUrl("/dashboard/pedido");
         this.pedidosComponent.showAllOrders();
         this.showModalMore('center', 'success', 'Pedido registrado exitosamente', false, 2000);
+
+        this.formBitacora.setValue({
+          fecha_actual: new Date,
+          movimiento: "Pedido",
+          accion: "Crear",
+          cantidad: form.cantidad_libras,
+          ayudante: "",
+          cliente: form.fk_tbl_cliente_cedula,
+          observacion: form.observasiones,
+          numero_acta: "",
+          usuario: "Admin",
+        })
+
+        this.dexServices.saveBitacora(this.formBitacora.value).subscribe(data => {
+        })
       })
     } else {
       this.ShowModal('Pedido', 'Error al registrar pedido', 'error');
