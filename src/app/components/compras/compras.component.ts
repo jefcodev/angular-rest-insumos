@@ -4,6 +4,7 @@ import { ComprasService } from 'src/app/servicios/compras/compras.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModelAutoridadesI } from '../../modelos/modelo.autoridades';
 import { AutoridadesService } from '../../servicios/autoridades/autoridades.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-compras',
@@ -18,7 +19,7 @@ export class ComprasComponent implements OnInit {
 
   formEditCompras = new FormGroup({
     id_compras: new FormControl(''),
-    fecha: new FormControl(''),
+    fecha: new FormControl('', [Validators.required]),
     numero_acta: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
     cantidad: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
     observacion: new FormControl(''),
@@ -68,8 +69,7 @@ export class ComprasComponent implements OnInit {
       fecha: new Date,
       numero_acta: numero_acta,
       cantidad: cantidad,
-      observacion: observacion,
-      fk_tbl_autoridades_id: autoridad
+      observacion: observacion
 
     })
     // setTimeout(() => {
@@ -86,13 +86,28 @@ export class ComprasComponent implements OnInit {
   }
 
   updateCompras(form: any) {
+    if (this.formEditCompras.valid) {
+      this.comprasServices.updateCompras(form).subscribe(data => {
+        this.showModalMore('center', 'success', 'Compra actualizada correctamente', false, 1500);
+        this.showAllCompras()
+      })
+    } else {
+      this.ShowModal('Compra', 'Error al actualizar compra', 'error');
+    }
 
-    this.comprasServices.updateCompras(form).subscribe(data => {
-      // this.showAllOrders()
+  }
 
-    })
-    this.cd.detectChanges();
-    // console.log(form.id_pedido=0)
+  ShowModal(title: any, infor: any, tipo: any) {
+    Swal.fire(title, infor, tipo);
+  }
+  showModalMore(position: any, icon: any, title: any, showConfirmButton: any, timer: any) {
+    Swal.fire({
+      position: position,
+      icon: icon,
+      title: title,
+      showConfirmButton: showConfirmButton,
+      timer: timer
+    });
   }
 
   get fechas() { return this.formEditCompras.get('fecha'); }

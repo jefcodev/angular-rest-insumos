@@ -20,14 +20,21 @@ export class CompdespachoComponent implements OnInit {
   clientes: ModelClientesI[] = [];
   guardias: ModelGuardiasI[] = [];
 
+  get cantidad_libras() { return this.formDespacho.get('cantidad_libras'); }
+  get numero_tinas() { return this.formDespacho.get('numero_tinas'); }
+  get ruta() { return this.formDespacho.get('ruta'); }
+  get fk_tbl_cliente_cedula() { return this.formDespacho.get('fk_tbl_cliente_cedula'); }
+  get fk_tbl_guardia_cedula() { return this.formDespacho.get('fk_tbl_guardia_cedula'); }
+
+
   formDespacho = new FormGroup({
     fecha_despacho: new FormControl(new Date),
-    cantidad_libras: new FormControl(''),
-    numero_tinas: new FormControl(''),
-    ruta: new FormControl(''),
+    cantidad_libras: new FormControl('', [Validators.required]),
+    numero_tinas: new FormControl('', [Validators.required]),
+    ruta: new FormControl('', [Validators.required]),
     observasiones: new FormControl(''),
-    fk_tbl_cliente_cedula: new FormControl(''),
-    fk_tbl_guardia_cedula: new FormControl('')
+    fk_tbl_cliente_cedula: new FormControl('', [Validators.required]),
+    fk_tbl_guardia_cedula: new FormControl('', [Validators.required])
   })
 
   constructor(private clientesService: ClientesService,
@@ -64,10 +71,19 @@ export class CompdespachoComponent implements OnInit {
   }
 
   createDespacho(form: any) {
-    this.despachoServices.saveDespacho(form).subscribe(data => {
+    if (this.formDespacho.valid) {
+      this.despachoServices.saveDespacho(form).subscribe(data => {
+        this.router.navigateByUrl("/dashboard/despacho");
+        this.showModalMore('center', 'success', 'Descapacho registrado exitosamente', false, 2000);
+
+        this.despachoComponent.showAllDespachos();
+      })
+    } else {
+      this.ShowModal('Despacho', 'Error al registrar despacho', 'error');
       this.router.navigateByUrl("/dashboard/despacho");
-      this.despachoComponent.showAllDespachos();
-    })
+
+    }
+
   }
 
   ShowModal(title: any, infor: any, tipo: any) {

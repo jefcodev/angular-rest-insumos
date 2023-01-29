@@ -24,7 +24,7 @@ select::-ms-expand {
 .select {
    position: relative;
    display: flex;
-   width: 20em;
+   width: 31em;
    height: 3em;
    line-height: 3;
    overflow: hidden;
@@ -49,58 +49,79 @@ select::-ms-expand {
    color: #5d5a5a;
 }
 
-.container__client {
 
+.container__main {
+   // // background: red;
+   padding: 10px;
    border: solid 1px;
-   border-radius: 7px;
-   width: auto;
-   height: auto;
-   padding: 15px;
-   margin-left: 100px;
-   margin-right: 100px
+   border-radius: 10px;
+
+   // padding-right: 70px;
+   margin-left: 300px;
+   margin-right: 300px;
+   // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+   
+   
 }
 
-.container__data__client {
-   display: flex;
-   width: auto;
-
-
-}
-
-.container__data__label {
-   display: flex;
-   padding-left: 3%;
-   width: auto;
-
-}
-
-.container_label {
-   //  background: red;
-   border: solid 1px;
-
-   border-radius: 2px;
-   //  margin: 2px;
-   margin-left: 10px;
-   display: flex;
+.container__title__object {
+   // background-color: yellow;
    text-align: center;
+   width: auto;
+}
+
+.container__data__object {
+   // background: blue;
+   // display: inline-block;
+   // justify-content: center;
+   display: flex;
    justify-content: center;
-   padding-left: 10px;
-   padding-right: 10px;
-}
-
-.label__client {
    text-align: center;
-   width: auto;
+
+   text-align: center;
+   height: auto;
+   margin: 0 auto;
+}
+
+.container__data__object__item {
+
+   display: inline-block;
+}
+
+.container__title__object2 {
+   // background: red;
+   text-align: center;
+}
+
+.container__body__object {
+   // background: yellow;
    display: flex;
-   align-items: center;
+
+   // justify-content: center;
+   text-align: center;
+   width: 100%;
+   height: auto;
 
 }
 
-h4 {
+.container__body__item {
+   // background: red;
+   display: inline-block;
+   // margin-left: 30px;
+   text-align: center;
+}
+
+.container__tutton {
+   // background: blue;
    display: flex;
-   box-shadow: inset;
-   width: 144px;
-   border-bottom: solid 4px rgb(9, 9, 81);
+   justify-content: center;
+   width: auto;
+}
+
+input,
+label {
+   display: block;
+   width: 300px;
 }
 
 .alert__danger {

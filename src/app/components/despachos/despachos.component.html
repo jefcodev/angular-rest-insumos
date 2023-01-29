@@ -72,6 +72,13 @@
                                             </select>
 
                                         </div>
+                                        <div class="alert__danger"
+                                            *ngIf="fk_tbl_cliente_cedula.invalid && (fk_tbl_cliente_cedula.dirty ||  fk_tbl_cliente_cedula.touched)">
+                                            <div class="container-error-message">
+                                                Seleccione el cliente
+                                            </div>
+                                        </div>
+                                        <br>
                                         <div class="select">
                                             <select name="format" id="format" formControlName="fk_tbl_guardia_cedula">
                                                 <option *ngFor="let c of guardias" [value]="c.cedula">{{c.nombre +'
@@ -80,19 +87,40 @@
                                             </select>
 
                                         </div>
+                                        <div class="alert__danger"
+                                            *ngIf="fk_tbl_guardia_cedula.invalid && (fk_tbl_guardia_cedula.dirty ||  fk_tbl_guardia_cedula.touched)">
+                                            <div class="container-error-message">
+                                                Seleccione el guardia
+                                            </div>
+                                        </div>
                                         <br>
                                         <div class="form-group">
-                                          
-                                            <input type="number" name="Nombre Ingrediente"
-                                                formControlName="cantidad_libras" placeholder="asadda"
-                                                class="form-control"> <br>
-                                                <input type="number" name="Nombre Ingrediente"
-                                                formControlName="numero_tinas" placeholder=""
-                                                class="form-control"> <br>
-                                            <input type="text" name="Nombre Ingrediente" formControlName="ruta"
-                                                placeholder="asadda" class="form-control"> <br>
-                                            <input type="text" name="Nombre Ingrediente" formControlName="observasiones"
-                                                placeholder="asadda" class="form-control"> <br>
+
+                                            <input type="number" formControlName="cantidad_libras" class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="cantidad_libras.invalid && (cantidad_libras.dirty ||  cantidad_libras.touched)">
+                                                <div class="container-error-message">
+                                                    La cantidad es requerida
+                                                </div>
+                                            </div> <br>
+                                            <input type="number" formControlName="numero_tinas" placeholder=""
+                                                class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="numero_tinas.invalid && (numero_tinas.dirty ||  numero_tinas.touched)">
+                                                <div class="container-error-message">
+                                                    El número de tinas es requerida
+                                                </div>
+                                            </div><br>
+
+                                            <input type="text" formControlName="ruta" class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="ruta.invalid && (ruta.dirty ||  ruta.touched)">
+                                                <div class="container-error-message">
+                                                    La ruta es requerida
+                                                </div>
+                                            </div><br>
+                                            <input type="text" formControlName="observasiones" class="form-control">
+                                            <br>
                                         </div>
 
                                         <div class="modal-footer">

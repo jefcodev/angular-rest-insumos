@@ -4,6 +4,7 @@ import { PrestamoTinasService } from 'src/app/servicios/prestamo_tinas/prestamo-
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientesService } from '../../servicios/clientes/clientes.service';
 import { ModelClientesI } from '../../modelos/modelo.clientes';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-prestamo-tinas',
@@ -16,15 +17,20 @@ export class PrestamoTinasComponent implements OnInit {
   clientes: ModelClientesI[] = [];
   fecha: "2000-03-20" | undefined;
 
+  get fecha_entrega() { return this.formPrestamoTinas.get('fecha_entrega'); }
+  get numero_tinas() { return this.formPrestamoTinas.get('numero_tinas'); }
+  get numero_acta() { return this.formPrestamoTinas.get('numero_acta'); }
+  get fk_tbl_cliente_cedula() { return this.formPrestamoTinas.get('fk_tbl_cliente_cedula'); }
 
   formPrestamoTinas = new FormGroup({
     id_prestamo_tinas: new FormControl(''),
     fecha_prestamo: new FormControl(new Date),
-    fecha_entrega: new FormControl(''),
-    numero_tinas: new FormControl(''),
-    numero_acta: new FormControl(''),
+    fecha_entrega: new FormControl('', [Validators.required]),
+    numero_tinas: new FormControl('', [Validators.required]),
+    numero_acta: new FormControl('', [Validators.required]),
     observasiones: new FormControl(''),
-    fk_tbl_cliente_cedula: new FormControl('')
+    fk_tbl_cliente_cedula: new FormControl('', [Validators.required]),
+
   })
 
 
@@ -56,7 +62,7 @@ export class PrestamoTinasComponent implements OnInit {
 
       observasiones: observaciones,
       numero_acta: numero_acta,
-      fk_tbl_cliente_cedula: cliente,
+      fk_tbl_cliente_cedula: null,
 
     })
     // console.log("Imprimiendo ", this.formDespacho)
@@ -74,10 +80,31 @@ export class PrestamoTinasComponent implements OnInit {
     );
   }
   updatePrestamos(form: any) {
-    this.prestamoTinasService.updatePrestamos(form).subscribe(data => {
-      this.showAllPrestamo()
+    if (this.formPrestamoTinas.valid) {
+      this.prestamoTinasService.updatePrestamos(form).subscribe(data => {
+        this.showModalMore('center', 'success', 'Prestamo actualizado correctamente', false, 1500);
 
-    })
-    console.log(form.id_pedido = 0)
+        this.showAllPrestamo()
+
+      })
+    } else {
+      this.ShowModal('Prestamo', 'Error al actualizar prestamos', 'error');
+
+    }
+
   }
+
+  ShowModal(title: any, infor: any, tipo: any) {
+    Swal.fire(title, infor, tipo);
+  }
+  showModalMore(position: any, icon: any, title: any, showConfirmButton: any, timer: any) {
+    Swal.fire({
+      position: position,
+      icon: icon,
+      title: title,
+      showConfirmButton: showConfirmButton,
+      timer: timer
+    });
+  }
+
 }

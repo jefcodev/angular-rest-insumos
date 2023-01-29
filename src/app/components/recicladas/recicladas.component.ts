@@ -6,6 +6,7 @@ import { ModelGuardiasI } from '../../modelos/modelo.guardias';
 import { GuardiasService } from '../../servicios/guardias/guardias.service';
 import { AutoridadesService } from '../../servicios/autoridades/autoridades.service';
 import { ModelAutoridadesI } from '../../modelos/modelo.autoridades';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-recicladas',
@@ -19,12 +20,12 @@ export class RecicladasComponent implements OnInit {
 
   constructor(private autoridadesServices: AutoridadesService, private guardiasService: GuardiasService, private recicladasServices: RecicladasService) { }
   formRecicladas = new FormGroup({
-    id: new FormControl(),
-    fecha: new FormControl(),
-    cantidad: new FormControl(''),
-    numero_acta: new FormControl(''),
+    id: new FormControl(''),
+    fecha: new FormControl('', [Validators.required]),
+    cantidad: new FormControl('', [Validators.required]),
+    numero_acta: new FormControl('', [Validators.required]),
     observasion: new FormControl(''),
-    fk_tbl_autoridades_id: new FormControl('')
+    fk_tbl_autoridades_id: new FormControl('', [Validators.required])
   })
 
 
@@ -53,7 +54,7 @@ export class RecicladasComponent implements OnInit {
       cantidad: cantidad,
       numero_acta: numero_acta,
       observasion: observacion,
-      fk_tbl_autoridades_id: guardia
+      fk_tbl_autoridades_id: null
     })
     console.log(this.formRecicladas)
     this.showAllAutoridades()
@@ -73,11 +74,36 @@ export class RecicladasComponent implements OnInit {
 
 
   updateReciclados(form: any) {
-    console.log(form)
-    this.recicladasServices.updateRecicladas(form).subscribe(data => {
-      this.showAllRecicladas()
+    if (this.formRecicladas.valid) {
+      this.recicladasServices.updateRecicladas(form).subscribe(data => {
+        this.showModalMore('center', 'success', 'Reciclado actualizada correctamente', false, 1500);
 
-    })
+        this.showAllRecicladas()
+
+      })
+    } else {
+      this.ShowModal('Reciclados', 'Error al actualizar', 'error');
+
+    }
+
 
   }
+
+  ShowModal(title: any, infor: any, tipo: any) {
+    Swal.fire(title, infor, tipo);
+  }
+  showModalMore(position: any, icon: any, title: any, showConfirmButton: any, timer: any) {
+    Swal.fire({
+      position: position,
+      icon: icon,
+      title: title,
+      showConfirmButton: showConfirmButton,
+      timer: timer
+    });
+  }
+  get fechau() { return this.formRecicladas.get('fecha'); }
+  get numero_acta() { return this.formRecicladas.get('numero_acta'); }
+  get cantidad() { return this.formRecicladas.get('cantidad'); }
+  get fk_tbl_autoridades_id() { return this.formRecicladas.get('fk_tbl_autoridades_id'); }
+
 }

@@ -6,6 +6,7 @@ import { ModelClientesI } from '../../modelos/modelo.clientes';
 import { ClientesService } from 'src/app/servicios/clientes/clientes.service';
 import { ModelGuardiasI } from '../../modelos/modelo.guardias';
 import { GuardiasService } from 'src/app/servicios/guardias/guardias.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -19,22 +20,29 @@ export class DespachosComponent implements OnInit {
   clientes: ModelClientesI[] = [];
   guardias: ModelGuardiasI[] = [];
 
+  get cantidad_libras() { return this.formDespacho.get('cantidad_libras'); }
+  get numero_tinas() { return this.formDespacho.get('numero_tinas'); }
+  get ruta() { return this.formDespacho.get('ruta'); }
+  get fk_tbl_cliente_cedula() { return this.formDespacho.get('fk_tbl_cliente_cedula'); }
+  get fk_tbl_guardia_cedula() { return this.formDespacho.get('fk_tbl_guardia_cedula'); }
+
+
 
   formDespacho = new FormGroup({
     id_despacho: new FormControl(''),
-    fecha_despacho: new FormControl(),
-    cantidad_libras: new FormControl(''),
-    numero_tinas: new FormControl(''),
-    ruta: new FormControl(''),
+    fecha_despacho: new FormControl(new Date),
+    cantidad_libras: new FormControl('', [Validators.required]),
+    numero_tinas: new FormControl('', [Validators.required]),
+    ruta: new FormControl('', [Validators.required]),
     observasiones: new FormControl(''),
-    fk_tbl_cliente_cedula: new FormControl(''),
-    fk_tbl_guardia_cedula: new FormControl('')
+    fk_tbl_cliente_cedula: new FormControl('', [Validators.required]),
+    fk_tbl_guardia_cedula: new FormControl('', [Validators.required])
   });
 
   constructor(private despachoServicio: DespachosService,
     private clientesService: ClientesService,
-     private guardiasService: GuardiasService,
-     private despachoServices:DespachosService) { }
+    private guardiasService: GuardiasService,
+    private despachoServices: DespachosService) { }
 
   ngOnInit(): void {
     this.showAllDespachos();
@@ -49,8 +57,8 @@ export class DespachosComponent implements OnInit {
       numero_tinas: numero_tinas,
       ruta: ruta,
       observasiones: observaciones,
-      fk_tbl_cliente_cedula: cliente,
-      fk_tbl_guardia_cedula: guardia
+      fk_tbl_cliente_cedula: null,
+      fk_tbl_guardia_cedula: null
     })
     console.log("Imprimiendo ", this.formDespacho)
 
@@ -88,10 +96,30 @@ export class DespachosComponent implements OnInit {
   }
 
   updateDespacho(form: any) {
-    this.despachoServices.updateDepachos(form).subscribe(data => {
-      this.showAllDespachos
+    if (this.formDespacho.valid) {
+      this.despachoServices.updateDepachos(form).subscribe(data => {
+        this.showModalMore('center', 'success', 'Despacho actualizada correctamente', false, 1500);
 
-    })
-    console.log(form.id_pedido = 0)
+        this.showAllDespachos()
+      })
+    } else {
+      this.ShowModal('Despacho', 'Error al actualizar despacho', 'error');
+
+    }
+
+
+  }
+
+  ShowModal(title: any, infor: any, tipo: any) {
+    Swal.fire(title, infor, tipo);
+  }
+  showModalMore(position: any, icon: any, title: any, showConfirmButton: any, timer: any) {
+    Swal.fire({
+      position: position,
+      icon: icon,
+      title: title,
+      showConfirmButton: showConfirmButton,
+      timer: timer
+    });
   }
 }

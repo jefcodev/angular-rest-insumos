@@ -53,7 +53,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Despacho</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Insumo</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -69,18 +69,33 @@
                                             </select>
 
                                         </div>
-                                        <input type="date" [ngModel]='fecha_ingreso | date:"yyyy-MM-dd" '
-                                            (ngModelChange)='fecha_ingreso=$event' name="Nombre Ingrediente"
-                                            formControlName="fecha_ingreso" placeholder="asadda" class="form-control">
+                                        <div class="alert__danger"
+                                            *ngIf="fk_tbl_guardia_cedula.invalid && (fk_tbl_guardia_cedula.dirty ||  fk_tbl_guardia_cedula.touched)">
+                                            <div class="container-error-message">
+                                                Seleccione el guardia
+                                            </div>
+                                        </div>
+
                                         <br>
                                         <input type="date" [ngModel]='fecha_salida | date:"yyyy-MM-dd" '
                                             (ngModelChange)='fecha_salida=$event' name="Nombre Ingrediente"
                                             formControlName="fecha_salida" placeholder="asadda" class="form-control">
-                                        <br>
+                                        <div class="alert__danger"
+                                            *ngIf="fecha_salid.invalid && (fecha_salid.dirty ||  fecha_salid.touched)">
+                                            <div class="container-error-message">
+                                                La fecha de salida es requerida
+                                            </div>
+                                        </div>
                                         <br>
                                         <div class="form-group">
 
                                             <input type="number" formControlName="cantidad_libras" class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="cantidad_libras.invalid && (cantidad_libras.dirty ||  cantidad_libras.touched)">
+                                                <div class="container-error-message">
+                                                    La cantidad es requerida
+                                                </div>
+                                            </div>
                                             <br>
                                             <input type="text" formControlName="observasiones" placeholder=""
                                                 class="form-control"> <br>

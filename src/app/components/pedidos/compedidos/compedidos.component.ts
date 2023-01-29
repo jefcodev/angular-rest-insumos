@@ -24,7 +24,7 @@ export class CompedidosComponent implements OnInit {
     fecha_entrega: new FormControl('', [Validators.required]),
     cantidad_libras: new FormControl('', [Validators.required]),
     ruta: new FormControl('', [Validators.required]),
-    observasiones: new FormControl('', [Validators.required]),
+    observasiones: new FormControl(''),
     fk_tbl_cliente_cedula: new FormControl('', [Validators.required])
   })
 

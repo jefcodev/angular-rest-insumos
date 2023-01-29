@@ -66,30 +66,54 @@
                                     <form [formGroup]="formPedidoA">
                                         <div class="select">
                                             <select name="format" id="format" formControlName="fk_tbl_cliente_cedula">
-                                                <option *ngFor="let c of clientes" [value]="c.cedula">{{c.nombre +' '+ c.apellido}}
+                                                <option *ngFor="let c of clientes" [value]="c.cedula">{{c.nombre +' '+
+                                                    c.apellido}}
                                                 </option>
                                             </select>
 
                                         </div>
+                                        <div class="alert__danger"
+                                            *ngIf="fk_tbl_cliente_cedula.invalid && (fk_tbl_cliente_cedula.dirty || fk_tbl_cliente_cedula.touched)">
+                                            <div class="container-error-message">
+                                                Seleccione el cliente
+                                            </div>
+                                        </div>
                                         <br>
                                         <div class="form-group">
                                             <input type="date" [ngModel]='fecha | date:"yyyy-MM-dd" '
-                                                (ngModelChange)='fecha=$event' name="Nombre Ingrediente"
-                                                formControlName="fecha_entrega" placeholder="asadda"
+                                                (ngModelChange)='fecha=$event' formControlName="fecha_entrega"
+                                                placeholder="" class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="fecha_entrega.invalid && (fecha_entrega.dirty || fecha_entrega.touched)">
+                                                <div class="container-error-message">
+                                                    La fecha de entrega es requerida
+                                                </div>
+                                            </div><br>
+                                            <input type="number" formControlName="cantidad_libras" placeholder=""
+                                                class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="cantidad_libras.invalid && (cantidad_libras.dirty || cantidad_libras.touched)">
+                                                <div class="container-error-message">
+                                                    La cantidad es necesaria
+                                                </div>
+                                            </div> <br>
+                                            <input type="text" formControlName="ruta" placeholder=""
+                                                class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="ruta.invalid && (ruta.dirty || ruta.touched)">
+                                                <div class="container-error-message">
+                                                    La ruta es necesaria
+                                                </div>
+                                            </div><br>
+                                            <input type="text" formControlName="observasiones" placeholder=""
                                                 class="form-control"> <br>
-                                            <input type="number" name="Nombre Ingrediente"
-                                                formControlName="cantidad_libras" placeholder="asadda"
-                                                class="form-control"> <br>
-                                            <input type="text" name="Nombre Ingrediente" formControlName="ruta"
-                                                placeholder="asadda" class="form-control"> <br>
-                                            <input type="text" name="Nombre Ingrediente" formControlName="observasiones"
-                                                placeholder="asadda" class="form-control"> <br> 
                                         </div>
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Cerrar</button>
-                                            <button type="button" class="btn btn-primary" (click)="updateOrders(formPedidoA.value)"
+                                            <button type="button" class="btn btn-primary"
+                                                (click)="updateOrders(formPedidoA.value)"
                                                 data-dismiss="modal">Actualizar</button>
                                         </div>
                                     </form>

@@ -29,7 +29,7 @@
                     {{i.id}}
                 </td>
                 <td>
-                    {{i.fecha}}
+                    {{i.fecha| date:"yyyy-MM-dd"}}
                 </td>
                 <td>
                     {{i.numero_acta}}
@@ -69,20 +69,43 @@
                                             </select>
 
                                         </div>
+                                        <div class="alert__danger"
+                                            *ngIf="fk_tbl_autoridades_id.invalid && (fk_tbl_autoridades_id.dirty ||  fk_tbl_autoridades_id.touched)">
+                                            <div class="container-error-message">
+                                                Seleccione una autoridad
+                                            </div>
+                                        </div>
+                                        <br>
                                         <input type="date" [ngModel]='fecha | date:"yyyy-MM-dd" '
                                             (ngModelChange)='fecha=$event' name="Nombre Ingrediente"
                                             formControlName="fecha" placeholder="asadda" class="form-control">
+                                        <div class="alert__danger"
+                                            *ngIf="fechau.invalid && (fechau.dirty ||  fechau.touched)">
+                                            <div class="container-error-message">
+                                                La fecha es requerida
+                                            </div>
+                                        </div>
                                         <br>
-                                        <br>
+
                                         <div class="form-group">
 
-                                            <input type="number"  formControlName="cantidad"
-                                                class="form-control"> <br>
-                                            <input type="number"  formControlName="numero_acta"
-                                                placeholder="" class="form-control"> <br>
+                                            <input type="number" formControlName="cantidad" class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="cantidad.invalid && (cantidad.dirty ||  cantidad.touched)">
+                                                <div class="container-error-message">
+                                                    La cantidad es requerida
+                                                </div>
+                                            </div><br>
+                                            <input type="number" formControlName="numero_acta" placeholder=""
+                                                class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="numero_acta.invalid && (numero_acta.dirty ||  numero_acta.touched)">
+                                                <div class="container-error-message">
+                                                    El número de acta es requerida
+                                                </div>
+                                            </div><br>
 
-                                            <input type="text"  formControlName="observasion"
-                                                class="form-control"> <br>
+                                            <input type="text" formControlName="observasion" class="form-control"> <br>
                                         </div>
 
                                         <div class="modal-footer">

@@ -72,20 +72,39 @@
                                             </select>
 
                                         </div>
+                                        <div class="alert__danger"
+                                            *ngIf="fk_tbl_cliente_cedula.invalid && (fk_tbl_cliente_cedula.dirty ||  fk_tbl_cliente_cedula.touched)">
+                                            <div class="container-error-message">
+                                                Seleccione el cliente
+                                            </div>
+                                        </div>
                                         <br>
                                         <div class="form-group">
                                             <input type="date" [ngModel]='fecha | date:"yyyy-MM-dd" '
-                                                (ngModelChange)='fecha=$event' name="Nombre Ingrediente"
-                                                formControlName="fecha_entrega" 
-                                                class="form-control"> <br>
-                                            <input type="number" name="Nombre Ingrediente"
-                                                formControlName="numero_tinas"
-                                                class="form-control"> <br>
-                                            <input type="text" name="Nombre Ingrediente" 
-                                            formControlName="numero_acta"
-                                                class="form-control"> <br>
-                                            <input type="text" name="Nombre Ingrediente" formControlName="observasiones"
-                                                class="form-control"> <br>
+                                                (ngModelChange)='fecha=$event' formControlName="fecha_entrega"
+                                                class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="fecha_entrega.invalid && (fecha_entrega.dirty ||  fecha_entrega.touched)">
+                                                <div class="container-error-message">
+                                                    La fecha de entrega es requerida
+                                                </div>
+                                            </div><br>
+                                            <input type="number" formControlName="numero_tinas" class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="numero_tinas.invalid && (numero_tinas.dirty ||  numero_tinas.touched)">
+                                                <div class="container-error-message">
+                                                    El número de tinas es requerida
+                                                </div>
+                                            </div> <br>
+                                            <input type="text" formControlName="numero_acta" class="form-control">
+                                            <div class="alert__danger"
+                                                *ngIf="numero_acta.invalid && (numero_acta.dirty ||  numero_acta.touched)">
+                                                <div class="container-error-message">
+                                                    El número de acta es requerido
+                                                </div>
+                                            </div> <br>
+                                            <input type="text" formControlName="observasiones" class="form-control">
+                                            <br>
                                         </div>
 
                                         <div class="modal-footer">

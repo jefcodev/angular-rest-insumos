@@ -15,13 +15,18 @@ import { AutoridadesService } from '../../../../servicios/autoridades/autoridade
 export class ComrecicladasComponent implements OnInit {
   autoridades: ModelAutoridadesI[] = [];
 
+  get fecha() { return this.formRecicladas.get('fecha'); }
+  get numero_acta() { return this.formRecicladas.get('numero_acta'); }
+  get cantidad() { return this.formRecicladas.get('cantidad'); }
+  get fk_tbl_autoridades_id() { return this.formRecicladas.get('fk_tbl_autoridades_id'); }
+
 
   formRecicladas = new FormGroup({
-    fecha: new FormControl(),
-    numero_acta: new FormControl(''),
-    cantidad: new FormControl(''),
+    fecha: new FormControl('', [Validators.required]),
+    numero_acta: new FormControl('', [Validators.required]),
+    cantidad: new FormControl('', [Validators.required]),
     observacion: new FormControl(''),
-    fk_tbl_autoridades_id: new FormControl('')
+    fk_tbl_autoridades_id: new FormControl('', [Validators.required])
   })
 
   constructor(private autoridadesServices: AutoridadesService,
@@ -38,20 +43,26 @@ export class ComrecicladasComponent implements OnInit {
     this.autoridadesServices.getAllAutoridades().subscribe(
       (autoridades: any) => {
         this.autoridades = autoridades
-        // this.showModalMore('center', 'success', 'Despacho registrado exitosamente', false, 2000);
       },
       (error) => console.log(error)
-      // this.ShowModal('Pedido', 'Error al registrar pedido', 'error');
 
     );
   }
 
   createRecicladas(form: any) {
-    console.log(form)
-    this.recicladasServices.saveRecicladas(form).subscribe(data => {
+    if (this.formRecicladas.valid) {
+      this.recicladasServices.saveRecicladas(form).subscribe(data => {
+        this.router.navigateByUrl("/dashboard/recicladas");
+        this.recicladasComponent.showAllRecicladas();
+        this.showModalMore('center', 'success', 'Reciclado registrado exitosamente', false, 2000);
+
+      })
+
+    } else {
+      this.ShowModal('Reciclado', 'Error al registrar', 'error');
       this.router.navigateByUrl("/dashboard/recicladas");
-      this.recicladasComponent.showAllRecicladas();
-    })
+    }
+
   }
 
   ShowModal(title: any, infor: any, tipo: any) {
@@ -66,4 +77,7 @@ export class ComrecicladasComponent implements OnInit {
       timer: timer
     });
   }
+
+
+
 }

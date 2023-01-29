@@ -15,22 +15,22 @@ import Swal from 'sweetalert2';
 })
 export class DevolucionesComponent implements OnInit {
 
-  fecha: "2000-03-20" | undefined;
+  fecha: "" | undefined;
 
   formDevolucion = new FormGroup({
-    cantidad: new FormControl(''),
+    cantidad: new FormControl('', [Validators.required]),
     fecha: new FormControl(new Date),
     observacion: new FormControl(''),
-    fk_tbl_prestamo_tinas_id: new FormControl("")
+    fk_tbl_prestamo_tinas_id: new FormControl("", [Validators.required])
 
   });
 
   formDevolucionUpdate = new FormGroup({
     id: new FormControl(''),
-    cantidad: new FormControl(''),
+    cantidad: new FormControl('', [Validators.required]),
     fecha: new FormControl(new Date),
     observacion: new FormControl(''),
-    fk_tbl_prestamo_tinas_id: new FormControl("")
+    fk_tbl_prestamo_tinas_id: new FormControl("", [Validators.required])
 
   });
   prestamos: ModelTinasI[] = [];
@@ -63,16 +63,16 @@ export class DevolucionesComponent implements OnInit {
 
   public crearDevolucion(form: any) {
     console.log(form)
-    // if (this.AutoridadForm.valid) {
-    this.devolucionesServices.saveDevoluciones(form).subscribe(data => {
-      this.showAllDevoluciones();
-      // this.guardsForm();
-      // this.showModalMore('center', 'success', 'Autoridad registrado exitosamente', false, 2000);
+    if (this.formDevolucion.valid) {
+      this.devolucionesServices.saveDevoluciones(form).subscribe(data => {
+        this.showAllDevoluciones();
+        // this.guardsForm();
+        this.showModalMore('center', 'success', 'Devolución registrado exitosamente', false, 2000);
 
-    })
-    // } else {
-    //   this.ShowModal('Autoridad', 'Error al registrar autoridad', 'error');
-    // }
+      })
+    } else {
+      this.ShowModal('Devolución', 'Error al registrar devolución', 'error');
+    }
 
   }
 
@@ -94,24 +94,30 @@ export class DevolucionesComponent implements OnInit {
       id: id,
       cantidad: cantidad,
       observacion: observacion,
-      fecha: fecha,
-      fk_tbl_prestamo_tinas_id: 1
+      fecha: fecha
 
     })
-    // this.cedulaAux = cedula;
-    console.log(id)
+
   }
 
   public updateAutoridades(form: any) {
-    console.log(form)
     if (this.formDevolucionUpdate.valid) {
       this.devolucionesServices.updateDevoluciones(form).subscribe(data => {
         this.showAllDevoluciones();
-        this.showModalMore('center', 'success', 'Devolucion actualizado correctamente', false, 1500);
+        this.showModalMore('center', 'success', 'Devolución actualizada correctamente', false, 1500);
       })
     } else {
-      this.ShowModal('Devolucion', 'Error al actualizar devolucion', 'error');
+      this.ShowModal('Devolución', 'Error al actualizar devolución', 'error');
     }
 
   }
+
+  get cantidad() { return this.formDevolucion.get('cantidad'); }
+  get fk_tbl_prestamo_tinas_id() { return this.formDevolucion.get('fk_tbl_prestamo_tinas_id'); }
+
+
+  get cantidadUpdate() { return this.formDevolucionUpdate.get('cantidad'); }
+  get fk_tbl_prestamo_tinas_idUpdate() { return this.formDevolucionUpdate.get('fk_tbl_prestamo_tinas_id'); }
+
+
 }

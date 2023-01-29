@@ -68,27 +68,27 @@
                                                     c.apellido}}
                                                 </option>
                                             </select>
-                                            <div class="alert__danger"
-                                                *ngIf="fk_tbl_autoridades_idd.invalid && (fk_tbl_autoridades_idd.dirty ||  fk_tbl_autoridades_idd.touched)">
-                                                <div class="container-error-message">
-                                                    Seleccione una autoridad
-                                                </div>
+
+                                        </div>
+                                        <div class="alert__danger"
+                                            *ngIf="fk_tbl_autoridades_idd.invalid && (fk_tbl_autoridades_idd.dirty ||  fk_tbl_autoridades_idd.touched)">
+                                            <div class="container-error-message">
+                                                Seleccione una autoridad
                                             </div>
                                         </div>
                                         <br>
                                         <div class="form-group">
-                                         <input type="date" [ngModel]='fe | date:"yyyy-MM-dd" '
+                                            <input type="date" [ngModel]='fe | date:"yyyy-MM-dd" '
                                                 (ngModelChange)='fe=$event' name="Nombre Ingrediente"
                                                 formControlName="fecha" placeholder="asadda" class="form-control">
-                                               
 
-                                            <!-- <input type="date" [(ngModel)]='h' class="form-control"> -->
-                                            <!-- <div class="alert__danger"
+
+                                            <div class="alert__danger"
                                                 *ngIf="fechas.invalid && (fechas.dirty ||  fechas.touched)">
                                                 <div class="container-error-message">
                                                     La fecha es requerida
                                                 </div>
-                                            </div>  -->
+                                            </div>
                                             <br>
                                             <input type="number" name="Nombre Ingrediente" formControlName="cantidad"
                                                 class="form-control">

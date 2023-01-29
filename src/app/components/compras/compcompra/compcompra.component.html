@@ -42,7 +42,7 @@
                 </div>
                 <div class="container__body__item">
                     <label for="tentacles"> Cantidad:</label>
-                    <input formControlName="cantidad" type="number" id="tentacles" name="tentacles" >
+                    <input formControlName="cantidad" type="number" id="tentacles" name="tentacles">
                     <div class="alert__danger" *ngIf="cantidad.invalid && (cantidad.dirty ||  cantidad.touched)">
                         <div class="container-error-message">
                             La cantidad es requerida
@@ -54,8 +54,9 @@
             <div class="container__body__general">
                 <div class="container__body__item">
                     <label for="tentacles">Número de acta:</label>
-                    <input formControlName="numero_acta" type="text" id="tentacles" name="tentacles" >
-                    <div class="alert__danger" *ngIf="numero_acta.invalid && (numero_acta.dirty ||  numero_acta.touched)">
+                    <input formControlName="numero_acta" type="text" id="tentacles" name="tentacles">
+                    <div class="alert__danger"
+                        *ngIf="numero_acta.invalid && (numero_acta.dirty ||  numero_acta.touched)">
                         <div class="container-error-message">
                             El número de acta es requerida
                         </div>
@@ -64,16 +65,20 @@
                 <div class="container__body__item">
                     <label for="tentacles"> Observaciones:</label>
                     <input formControlName="observacion" type="text" id="tentacles" name="tentacles">
-                    
+
                 </div>
             </div>
 
 
         </div>
         <br>
+    
         <div class="container__tutton">
 
-            <button type="button" class="btn btn-primary" (click)="createCompra(formCompra.value)">Guardar</button>
+            <button type="button" style="margin-right: 20px;" class="btn btn-primary"
+                (click)="createCompra(formCompra.value)">Guardar</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/dashboard/compras']">Cancelar</button>
+
         </div>
     </form>
 </div>

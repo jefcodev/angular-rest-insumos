@@ -52,11 +52,11 @@ export class GuardiasComponent implements OnInit {
       this.guardiaService.saveGuards(form).subscribe(data => {
         this.showAllGuards();
         this.guardsForm();
-        this.showModalMore('center', 'succes', 'Guardia registrado exitosamente', false, 2000);
+        this.showModalMore('center', 'success', 'Ayudante registrado exitosamente', false, 2000);
 
       })
     } else {
-      this.ShowModal('Guardia', 'Error al registrar guardia', 'error');
+      this.ShowModal('Ayudante', 'Error al registrar ayudante', 'error');
     }
 
   }
@@ -89,10 +89,10 @@ export class GuardiasComponent implements OnInit {
     if (this.nGuardiaFormA.valid) {
       this.guardiaService.updateGuards(form).subscribe(data => {
         this.showAllGuards();
-        this.showModalMore('center', 'success', 'Guardia actualizado correctamente', false, 1500);
+        this.showModalMore('center', 'success', 'Ayudante actualizado correctamente', false, 1500);
       })
     } else {
-      this.ShowModal('Cliente', 'Error al actualizar guardia', 'error');
+      this.ShowModal('Ayudante', 'Error al actualizar ayudante', 'error');
     }
 
   }
