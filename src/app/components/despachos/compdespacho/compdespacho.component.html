@@ -23,7 +23,7 @@
 
         </div>
         <div class="container__title__object">
-            <h4>Datos Guardia</h4>
+            <h4>Datos Ayudante</h4>
         </div>
         <div class="container__data__object">
             <div class="container__data__object__item">
@@ -36,7 +36,7 @@
                 <div class="alert__danger"
                     *ngIf="fk_tbl_guardia_cedula.invalid && (fk_tbl_guardia_cedula.dirty ||  fk_tbl_guardia_cedula.touched)">
                     <div class="container-error-message">
-                        Seleccione el guardia
+                        Seleccione el aydudante
                     </div>
                 </div>
 
@@ -61,12 +61,12 @@
                 </div>
 
                 <div class="container__body__item">
-                    <label for="tentacles"> Número de tinas:</label>
+                    <label for="tentacles"> Número de huacales:</label>
                     <input formControlName="numero_tinas" type="number" id="tentacles" name="tentacles">
                     <div class="alert__danger"
                         *ngIf="numero_tinas.invalid && (numero_tinas.dirty ||  numero_tinas.touched)">
                         <div class="container-error-message">
-                            El número de tinas es requerida
+                            El número de huacales es requerida
                         </div>
                     </div>
                 </div>

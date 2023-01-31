@@ -42,6 +42,7 @@ export class HomeAComponent implements OnInit {
   showAll() {
     this.tinasServices.getAllTinas().subscribe(
       (tinas: any) => {
+        console.log(tinas)
         this.stock = tinas[0]['stock'];
       },
       (error) => console.log(error)

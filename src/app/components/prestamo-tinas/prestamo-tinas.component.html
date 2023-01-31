@@ -1,21 +1,21 @@
 <div class="col-md-12">
     <div style="text-align: center;">
-        <h1>Prestamo de tinas</h1>
+        <h1>Préstamo de huacales</h1>
     </div>
     <button type="button" class="btn btn-primary" data-toggle="modal"
-        [routerLink]="['/dashboard/prestamo/compprestamo']">Nuevo prestamo</button>
+        [routerLink]="['/dashboard/prestamo/compprestamo']">Nuevo préstamo</button>
     <br><br>
     <router-outlet></router-outlet><br>
     <table class="table table-bordered table-hover bg-white" style="text-align: center;">
         <thead>
             <tr>
                 <th style="width: 10px;">ID</th>
-                <th>Fecha prestamo</th>
+                <th>Fecha préstamo</th>
                 <th>Fecha entrega</th>
 
-                <th>Número de tinas</th>
+                <th>Número de huacales</th>
 
-                <th>Observacion</th>
+                <th>Observación</th>
                 <th>Número de acta</th>
                 <th>Cliente</th>
 
@@ -57,7 +57,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Prestamo</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar Préstamo</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -93,7 +93,7 @@
                                             <div class="alert__danger"
                                                 *ngIf="numero_tinas.invalid && (numero_tinas.dirty ||  numero_tinas.touched)">
                                                 <div class="container-error-message">
-                                                    El número de tinas es requerida
+                                                    El número de huacales es requerida
                                                 </div>
                                             </div> <br>
                                             <input type="text" formControlName="numero_acta" class="form-control">

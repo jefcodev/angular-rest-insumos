@@ -12,11 +12,11 @@
                 <th style="width: 10px;">ID</th>
                 <th>Fecha de despacho</th>
                 <th>Cantidad</th>
-                <th>Número de tinas</th>
+                <th>Número de huacales</th>
                 <th>Ruta</th>
-                <th>Observacion</th>
+                <th>Observación</th>
                 <th>Cliente</th>
-                <th>Guardia</th>
+                <th>Ayudante</th>
                 <th>Opciones</th>
             </tr>
 
@@ -90,7 +90,7 @@
                                         <div class="alert__danger"
                                             *ngIf="fk_tbl_guardia_cedula.invalid && (fk_tbl_guardia_cedula.dirty ||  fk_tbl_guardia_cedula.touched)">
                                             <div class="container-error-message">
-                                                Seleccione el guardia
+                                                Seleccione el ayudante
                                             </div>
                                         </div>
                                         <br>
@@ -108,7 +108,7 @@
                                             <div class="alert__danger"
                                                 *ngIf="numero_tinas.invalid && (numero_tinas.dirty ||  numero_tinas.touched)">
                                                 <div class="container-error-message">
-                                                    El número de tinas es requerida
+                                                    El número de huacales es requerida
                                                 </div>
                                             </div><br>
 
