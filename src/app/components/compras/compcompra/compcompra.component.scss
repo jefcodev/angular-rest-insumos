@@ -33,6 +33,7 @@ select::-ms-expand {
 
 }
 
+
 .select::after {
     content: '\25BC';
     position: absolute;
@@ -55,19 +56,24 @@ select::-ms-expand {
     padding: 10px;
     border: solid 1px;
     border-radius: 10px;
+    width: auto;
+    height: auto;
 
     // padding-right: 70px;
-    margin-left: 300px;
-    margin-right: 300px;
+    margin-left: 200px;
+    margin-right: 200px;
+    max-width: auto;
+    min-width: 650px;
     // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    
-    
+
+
 }
 
 .container__title__object {
-    // background-color: yellow;
+
     text-align: center;
     width: auto;
+    height: auto;
 }
 
 .container__data__object {
@@ -123,6 +129,7 @@ label {
     display: block;
     width: 300px;
 }
+
 
 .alert__danger {
     color: #721c24;

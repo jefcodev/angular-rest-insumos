@@ -55,10 +55,14 @@ select::-ms-expand {
    padding: 10px;
    border: solid 1px;
    border-radius: 10px;
+   width: auto;
+   height: auto;
 
    // padding-right: 70px;
-   margin-left: 300px;
-   margin-right: 300px;
+   margin-left: 200px;
+   margin-right: 200px;
+   max-width: auto;
+   min-width: 650px;
    // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
 
