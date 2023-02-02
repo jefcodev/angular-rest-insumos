@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { HttpClient } from '@angular/common/http';
+
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { LoginService } from '../../servicios/login/login.service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,36 +15,34 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+  estado: boolean = false;
+  resp: string = "";
+  formLogin = new FormGroup({
 
-  public loginForm!: FormGroup
+    nombre_usuario: new FormControl(''),
+    clave_usuario: new FormControl(''),
 
-  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router) { }
+  });
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formbuilder.group({
-      nombre_usuario: [''],
-      clave_usuario: ['', Validators.required],
-      tipo_usuario: ['']
-    })
+
   }
-  login() {
-    this.http.get<any>("https://app-sistemas-inventarios.herokuapp.com/usuarios")
-      .subscribe(res => {
-        const user = res.find((a: any) => {
-          return a.nombre_usuario === this.loginForm.value.nombre_usuario && a.clave_usuario === this.loginForm.value.clave_usuario
-        });
+  public Login(form: any) {
+    this.estado = false;
+    this.loginService.Login(form).subscribe((data: any) => {
 
-        if (user) {
-          this.showModalMore('center', 'success', 'Bienvenido', false, 1500);
+      if (data.status == 'Error') {
+        this.estado = true;
+        this.resp = data.resp;
+      } else {
+        this.estado = false;
+        // this.cookieService.set('token', data.token, 4, '/');
+        this.showModalMore('center', 'success', 'Bienvenido', false, 1500);
+        this.router.navigate(['/dashboard/homeA']);
+      }
+    })
 
-          this.router.navigate(["dashboard/homeA"])
-        } else {
-          this.ShowModal('Inicio de sesión', 'Usuario no encontrado', 'error');
-
-        }
-      }, err => {
-        alert("Something went wrong")
-      })
   }
 
   ShowModal(title: any, infor: any, tipo: any) {
