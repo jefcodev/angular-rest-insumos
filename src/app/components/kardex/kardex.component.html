@@ -2,6 +2,11 @@
     <div style="text-align: center;">
         <h1>KARDEX</h1>
     </div>
+    <div style="text-align: center;">
+        <input  class="input" placeholder="Busqueda"  (ngModelChange)="search($event)" [ngModel]="src"
+        type="text">
+    </div>
+  
     <br>
     <table class="table table-bordered table-hover bg-white" style="text-align: center;">
         <thead>
@@ -23,31 +28,77 @@
         </thead>
         <tbody>
             <tr *ngFor="let i of kardex">
-                <td>
+                <td [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                'definedColorDevolucion':i.movimiento==='Devolución',
+                'definedColorPrestamo':i.movimiento==='Prestamo',
+                'definedColorDespacho':i.movimiento==='Despacho',
+                'definedColorPedidos':i.movimiento==='Pedido',
+                'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.fecha_actual | date:"yyyy-MM-dd"}}
                 </td>
-                <td>
+                <td
+                    [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                    'definedColorDevolucion':i.movimiento==='Devolución',
+                    'definedColorPrestamo':i.movimiento==='Prestamo',
+                    'definedColorDespacho':i.movimiento==='Despacho',
+                    'definedColorPedidos':i.movimiento==='Pedido',
+                    'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.movimiento}}
                 </td>
-                <td>
+                <td  [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                    'definedColorDevolucion':i.movimiento==='Devolución',
+                    'definedColorPrestamo':i.movimiento==='Prestamo',
+                    'definedColorDespacho':i.movimiento==='Despacho',
+                    'definedColorPedidos':i.movimiento==='Pedido',
+                    'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.accion}}
                 </td>
-                <td>
+                <td [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                    'definedColorDevolucion':i.movimiento==='Devolución',
+                    'definedColorPrestamo':i.movimiento==='Prestamo',
+                    'definedColorDespacho':i.movimiento==='Despacho',
+                    'definedColorPedidos':i.movimiento==='Pedido',
+                    'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.cantidad}}
                 </td>
-                <td>
+                <td [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                    'definedColorDevolucion':i.movimiento==='Devolución',
+                    'definedColorPrestamo':i.movimiento==='Prestamo',
+                    'definedColorDespacho':i.movimiento==='Despacho',
+                    'definedColorPedidos':i.movimiento==='Pedido',
+                    'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.ayudante}}
                 </td>
-                <td>
+                <td [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                    'definedColorDevolucion':i.movimiento==='Devolución',
+                    'definedColorPrestamo':i.movimiento==='Prestamo',
+                    'definedColorDespacho':i.movimiento==='Despacho',
+                    'definedColorPedidos':i.movimiento==='Pedido',
+                    'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.cliente}}
                 </td>
-                <td>
+                <td [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                    'definedColorDevolucion':i.movimiento==='Devolución',
+                    'definedColorPrestamo':i.movimiento==='Prestamo',
+                    'definedColorDespacho':i.movimiento==='Despacho',
+                    'definedColorPedidos':i.movimiento==='Pedido',
+                    'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.observacion}}
                 </td>
-                <td>
+                <td [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                    'definedColorDevolucion':i.movimiento==='Devolución',
+                    'definedColorPrestamo':i.movimiento==='Prestamo',
+                    'definedColorDespacho':i.movimiento==='Despacho',
+                    'definedColorPedidos':i.movimiento==='Pedido',
+                    'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.numero_acta}}
                 </td>
-                <td>
+                <td [ngClass]="{'definedColorCompra':i.movimiento==='Compra',
+                    'definedColorDevolucion':i.movimiento==='Devolución',
+                    'definedColorPrestamo':i.movimiento==='Prestamo',
+                    'definedColorDespacho':i.movimiento==='Despacho',
+                    'definedColorPedidos':i.movimiento==='Pedido',
+                    'definedColorRecicladas':i.movimiento==='Recicladas'}">
                     {{i.usuario}}
                 </td>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CookieService } from 'ngx-cookie-service';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit {
     clave_usuario: new FormControl(''),
 
   });
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
 
@@ -37,8 +37,8 @@ export class LoginPageComponent implements OnInit {
         this.resp = data.resp;
       } else {
         this.estado = false;
-        // this.cookieService.set('token', data.token, 4, '/');
-        this.showModalMore('center', 'success', 'Bienvenido', false, 1500);
+        this.cookieService.set('tokenIC', data.token, 4, '/');
+        this.showModalMore('center', 'success', 'Bienvenido '+data.usuario, false, 2000);
         this.router.navigate(['/dashboard/homeA']);
       }
     })

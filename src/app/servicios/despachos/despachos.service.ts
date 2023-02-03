@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DespachosService {
 
- url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
-//  url: string = 'http://localhost:4000/';
+//  url: string = 'https://app-sistemas-inventarios.herokuapp.com/';
+ url: string = 'http://localhost:3000/';
   constructor(private http: HttpClient) { }
 
   getAllDespachos() {

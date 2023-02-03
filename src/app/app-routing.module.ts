@@ -23,19 +23,10 @@ import { ComrecicladasComponent } from './components/recicladas/comprecicladas/c
 import { HomeAComponent } from './components/homeA/home-a/home-a.component';
 import { CompcompraComponent } from './components/compras/compcompra/compcompra.component';
 import { KardexComponent } from './components/kardex/kardex.component';
+import { UserGuardGuard } from './user-guard.guard';
 
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "login", component: LoginPageComponent },
-  { path: "home", component: HomeComponent },
-  { path: "cliente", component: ClientesComponent },
-  { path: "guardia", component: GuardiasComponent },
-  { path: "pedido", component: PedidosComponent },
-  { path: "compedido", component: CompedidosComponent },
-  { path: "despacho", component: DespachosComponent },
-  { path: "insumos", component: DespachosComponent },
-  
-  { path: "prestamo", component: DespachosComponent },
+  { path: "", redirectTo: "dashboard/homeA", pathMatch: "full" },
   {
     path: "dashboard", component: DashboardComponent, children: [
       { path: "home", component: HomeComponent },
@@ -77,8 +68,13 @@ const routes: Routes = [
           { path: "compedido", component: CompedidosComponent }
         ]
       }
-    ]
+    ], canActivate:[UserGuardGuard]
   },
+  { path: "login", component: LoginPageComponent },
+  
+  
+  
+ 
 
 ];
 
