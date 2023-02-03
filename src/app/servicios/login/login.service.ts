@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginService {
-
-  url: string = 'http://localhost:3000/';
+  url: string = 'https://tinas-app.herokuapp.com/';
+  // url: string = 'http://localhost:3000/';
   constructor(private http: HttpClient) { }
 
   // getAllAutoridades() {
